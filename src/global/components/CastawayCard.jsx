@@ -1,5 +1,4 @@
 import style from "./CastawayCard.module.css"
-// import { CASTAWAYS } from "../gameConsts"
 import lifeMeter from "../assets/lifeMeter.svg"
 
 export const CastawayCard = ({ castaway }) => {
@@ -18,7 +17,6 @@ export const CastawayCard = ({ castaway }) => {
             className={style.attributeContainer}
             style={{
               backgroundColor: "var(--system-red)",
-              borderColor: "var(--system-red)",
             }}
           >
             <p className={style.attributeText}>Physical</p>
@@ -30,7 +28,6 @@ export const CastawayCard = ({ castaway }) => {
             className={style.attributeContainer}
             style={{
               backgroundColor: "var(--system-blue)",
-              borderColor: "var(--system-blue)",
             }}
           >
             <p className={style.attributeText}>Mental</p>
@@ -42,7 +39,6 @@ export const CastawayCard = ({ castaway }) => {
             className={style.attributeContainer}
             style={{
               backgroundColor: "var(--system-green)",
-              borderColor: "var(--system-green)",
             }}
           >
             <p className={style.attributeText}>Social</p>
@@ -54,7 +50,6 @@ export const CastawayCard = ({ castaway }) => {
             className={style.attributeContainerBig}
             style={{
               backgroundColor: "var(--system-grey)",
-              borderColor: "var(--player-grey)",
             }}
           >
             <p className={style.attributeText}>{castaway.traits?.age || 21}</p>

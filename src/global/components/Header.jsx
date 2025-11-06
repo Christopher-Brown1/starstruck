@@ -1,6 +1,6 @@
-import style from "../global-components/header.module.css"
+import style from "./header.module.css"
 
-import logo from "../assets/logo.png"
+import logo from "../assets/Logo.png"
 
 export const Header = ({ step }) => {
   return (
@@ -45,7 +45,7 @@ export const Header = ({ step }) => {
               </p>
             </div>
           )}
-          {step === "dailyMail" && (
+          {step === "gameplay" && (
             <>
               <div
                 className={style.castawayCounterContainer}

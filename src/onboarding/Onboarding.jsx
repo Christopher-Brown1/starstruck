@@ -1,8 +1,8 @@
 import style from "../onboarding/Onboarding.module.css"
 
-import { Button } from "../global-components/Button.jsx"
+import { Button } from "../global/components/Button.jsx"
 
-import logo from "../assets/logo.png"
+import logo from "../global/assets/Logo.png"
 
 export const Onboarding = ({ setStep }) => {
   // const [tribeSwapEnabled, setTribeSwapEnabled] = useState(false)

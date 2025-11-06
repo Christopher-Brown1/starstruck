@@ -1,4 +1,4 @@
-import style from "../global-components/tribeDeck.module.css"
+import style from "../components/tribeDeck.module.css"
 import { CastawayCard } from "./CastawayCard"
 import { PlayerNameCard } from "./PlayerNameCard"
 

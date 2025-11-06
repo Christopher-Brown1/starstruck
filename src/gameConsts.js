@@ -631,10 +631,10 @@ export const CASTAWAYS = {
   },
 }
 
-export const DAILYMAIL = {
-  DOUBLE_DOWN: {
+export const DAILYMAIL = [
+  {
     name: "Double Down",
     text: "All players receive two Camp Life cards each.",
     action: "2 Camp Life cards to each player.",
   },
-}
+]

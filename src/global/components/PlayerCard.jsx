@@ -1,13 +1,13 @@
 import style from "./PlayerCard.module.css"
 
-import coconut from "../assets/onboarding/coconut.svg?react"
-import crab from "../assets/onboarding/crab.svg?react"
-import fire from "../assets/onboarding/fire.svg?react"
-import fish from "../assets/onboarding/fish.svg?react"
-import island from "../assets/onboarding/island.svg?react"
-import machete from "../assets/onboarding/machete.svg?react"
-import snake from "../assets/onboarding/snake.svg?react"
-import torch from "../assets/onboarding/torch.svg?react"
+import coconut from "../assets/coconut.svg?react"
+import crab from "../assets/crab.svg?react"
+import fire from "../assets/fire.svg?react"
+import fish from "../assets/fish.svg?react"
+import island from "../assets/island.svg?react"
+import machete from "../assets/machete.svg?react"
+import snake from "../assets/snake.svg?react"
+import torch from "../assets/torch.svg?react"
 
 const iconMap = {
   coconut,

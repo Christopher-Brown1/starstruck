@@ -5,9 +5,8 @@ import { Onboarding } from "./onboarding/Onboarding.jsx"
 import { EnterGame } from "./onboarding/EnterGame.jsx"
 import { TribeDivision } from "./onboarding/TribeDivision.jsx"
 import { CastawaySelection } from "./onboarding/CastawaySelection.jsx"
-import { DailyMail } from "../src/daily-mail/DailyMail.jsx"
-import { Header } from "../src/global-components/Header.jsx"
-// import style from "./App.module.css"
+import { Gameplay } from "./gameplay/Gameplay.jsx"
+import { Header } from "./global/components/Header.jsx"
 
 function App() {
   const [step, setStep] = useState("enterGame")
@@ -83,9 +82,7 @@ function App() {
       {step === "castawaySelection" && (
         <CastawaySelection setStep={setStep} players={players} />
       )}
-      {step === "dailyMail" && (
-        <DailyMail setStep={setStep} players={players} />
-      )}
+      {step === "gameplay" && <Gameplay players={players} />}
     </>
   )
 }

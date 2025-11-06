@@ -1,8 +1,7 @@
 import style from "../onboarding/EnterGame.module.css"
 
-import { PlayerCard } from "../global-components/PlayerCard.jsx"
-import { NextButton } from "../global-components/NextButton"
-import { Header } from "../global-components/Header.jsx"
+import { PlayerCard } from "../global/components/PlayerCard.jsx"
+import { NextButton } from "../global/components/NextButton.jsx"
 
 export const EnterGame = ({ setStep, players }) => {
   return (

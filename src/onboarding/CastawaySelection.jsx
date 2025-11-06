@@ -1,8 +1,8 @@
 import style from "../onboarding/CastawaySelection.module.css"
 
-import { TribeDeck1 } from "../global-components/TribeDeck1.jsx"
-import { TribeDeck2 } from "../global-components/TribeDeck2.jsx"
-import { NextButton } from "../global-components/NextButton.jsx"
+import { TribeDeck1 } from "../global/components/TribeDeck1.jsx"
+import { TribeDeck2 } from "../global/components/TribeDeck2.jsx"
+import { NextButton } from "../global/components/NextButton.jsx"
 
 export const CastawaySelection = ({ setStep, players }) => {
   return (
@@ -14,7 +14,7 @@ export const CastawaySelection = ({ setStep, players }) => {
           <h2 className={style.instructionText}>
             Check out your castaways on your phone now.
           </h2>
-          <NextButton onClick={() => setStep("dailyMail")} />
+          <NextButton onClick={() => setStep("gameplay")} />
         </div>
       </div>
     </>
