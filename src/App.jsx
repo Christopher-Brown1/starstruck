@@ -1,11 +1,12 @@
 import { useState } from "react"
 import "./App.css"
 import { CASTAWAYS } from "./gameConsts.js"
-import { Nav } from "./nav/Nav.jsx"
 import { Onboarding } from "./onboarding/Onboarding.jsx"
 import { EnterGame } from "./onboarding/EnterGame.jsx"
 import { TribeDivision } from "./onboarding/TribeDivision.jsx"
 import { CastawaySelection } from "./onboarding/CastawaySelection.jsx"
+import { DailyMail } from "../src/daily-mail/DailyMail.jsx"
+import { Header } from "../src/global-components/Header.jsx"
 // import style from "./App.module.css"
 
 function App() {
@@ -71,6 +72,7 @@ function App() {
 
   return (
     <>
+      <Header step={step} />
       {step === "onboarding" && <Onboarding setStep={setStep} />}
       {step === "enterGame" && (
         <EnterGame setStep={setStep} players={players} />
@@ -81,13 +83,8 @@ function App() {
       {step === "castawaySelection" && (
         <CastawaySelection setStep={setStep} players={players} />
       )}
-
-      {step === "main" && (
-        <div>
-          <h2>Main Application</h2>
-          <p>This is the main content of the app.</p>
-          <Nav setStep={setStep} step={step} />
-        </div>
+      {step === "dailyMail" && (
+        <DailyMail setStep={setStep} players={players} />
       )}
     </>
   )
