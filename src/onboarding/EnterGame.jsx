@@ -8,7 +8,6 @@ export const EnterGame = ({ setStep, players }) => {
   return (
     <>
       <div className={style.enterGameContent}>
-        <Header />
         <div className={style.bodyContent}>
           <div className={style.playersContainer}>
             <h2 className={style.playersText}>Players</h2>

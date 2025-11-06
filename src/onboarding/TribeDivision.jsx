@@ -8,7 +8,6 @@ export const TribeDivision = ({ setStep, players }) => {
   return (
     <>
       <div className={style.tribeDivisionContent}>
-        <Header />
         <div className={style.playersContainer}>
           <h2 className={style.playersText}>Players</h2>
           <div className={style.playerTileContainer}>
