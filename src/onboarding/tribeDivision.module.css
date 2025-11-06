@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-end;
-  height: calc(100vh - 72px);
+  height: calc(100vh - 280px);
 }
 
 .playersContainer {
