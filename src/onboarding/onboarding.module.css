@@ -1,0 +1,111 @@
+.onboardingContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 64px;
+}
+
+.settingsContainer {
+  display: flex;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  gap: 64px;
+  align-self: stretch;
+}
+
+.onboardingText {
+  width: 480px;
+  color: var(--White);
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.settingOption {
+  display: flex;
+  width: 200px;
+  height: 200px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 44px;
+  border-radius: 8px;
+  border: 1px solid var(--system-grey);
+}
+
+.settingText {
+  color: var(--White);
+  text-align: center;
+  font-family: Impact;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 120px;
+  height: 48px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--system-black);
+  border-radius: 8px;
+  border: 1px solid var(--system-grey);
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 46px;
+  width: 48px;
+  left: -1px;
+  bottom: 0;
+  border-radius: 8px;
+  border: 1px solid var(--system-grey);
+  background: var(--system-grey);
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: var(--system-black);
+  border: 1px solid var(--system-green);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px var(--system-green);
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(72px);
+  -ms-transform: translateX(72px);
+  transform: translateX(72px);
+  background: var(--system-green);
+  border: 1px solid var(--system-green);
+}

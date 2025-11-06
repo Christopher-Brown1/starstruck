@@ -1,0 +1,14 @@
+.button {
+  display: flex;
+  padding: 16px 32px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100px;
+  color: var(--system-black);
+  text-align: center;
+  font-family: Impact;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}

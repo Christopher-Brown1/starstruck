@@ -1,0 +1,48 @@
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  align-self: stretch;
+  margin: 32px 0;
+}
+
+.roomCodeContainer {
+  display: flex;
+  padding: 8px;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+  border: 1px dashed var(--system-white);
+}
+
+.roomCodeText {
+  color: var(--system-white);
+  text-align: center;
+  font-family: "ADLaM Display";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin: 0;
+}
+
+.castawayCounterContainer {
+  display: flex;
+  padding: 8px;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+  border: 1px dashed var(--system-orange);
+}
+
+.castawayCounterText {
+  color: var(--system-orange);
+  text-align: center;
+  font-family: "ADLaM Display";
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin: 0;
+}

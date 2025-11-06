@@ -1,0 +1,10 @@
+.nextButton {
+  width: 68px;
+  height: 68px;
+  background: var(--dark);
+  border-radius: 100%;
+  border: 2px solid var(--system-green);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

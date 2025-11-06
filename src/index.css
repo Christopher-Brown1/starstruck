@@ -1,0 +1,65 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #191919;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* System Variables */
+  --system-red: #f50d00;
+  --system-green: #00b62e;
+  --system-tan: #e4d9bb;
+  --system-blue: #0085ff;
+  --system-red-light: #f57871;
+  --system-blue-light: #6ab7ff;
+  --system-green-light: #77ea94;
+  --system-black: #191919;
+  --system-grey: #9393ae;
+  --system-white: #ffffff;
+  --system-teal: #9efefe;
+  --system-orange: #ffbf00;
+
+  /* Player Variables */
+  --player-yellow: #ffea00;
+  --player-pink: #ff0090;
+  --player-green: #00ff40;
+  --player-brown: #9f8564;
+  --player-red: #ff3c00;
+  --player-blue: #0088ff;
+  --player-purple: #d900ff;
+  --player-orange: #ffb200;
+  --player-teal: #00fff3;
+
+  /* Tribe Variables */
+  --tribe-teal-setup: #64d2ff;
+  --tribe-purple: #a900ff;
+  --tribe-yellow: #ffee00;
+  --tribe-blue: #446df4;
+
+  /* Card Variables */
+  --card-background: #ebefed;
+  --card-daily-mail: #237629;
+  --card-camp-life: #674724;
+  --card-tribunal-twist: #8e0707;
+  --card-challenge: #0592a4;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+p,
+li,
+h1,
+h2,
+h3 {
+  font-family: "ADLaM Display", sans-serif;
+  margin: 0;
+}

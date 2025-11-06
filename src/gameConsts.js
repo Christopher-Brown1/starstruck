@@ -1,0 +1,92 @@
+export const CASTAWAYS = {
+  DOCTOR: { name: "Doctor", health: 4, archetype: "Mental" },
+  TRIATHLETE: { name: "Triathlete", health: 4, archetype: "Physical" },
+  PHOTOGRAPHER: { name: "Photographer", health: 4, archetype: "Social" },
+  HAIRDRESSER: {
+    name: "Hairdresser",
+    health: 4,
+    archetypes: {
+      type: "social",
+
+      physical: 24,
+      strength: 4,
+      speed: 5,
+      endurance: 3,
+      dexterity: 7,
+      balance: 5,
+
+      mental: 33,
+      memory: 8,
+      puzzles: 4,
+      fortitude: 5,
+      awareness: 5,
+      focus: 9,
+
+      social: 43,
+      relationships: 10,
+      likeability: 8,
+      interrogation: 10,
+      deception: 7,
+      alliances: 8,
+
+      swimming: 7,
+    },
+    traits: {
+      age: 32,
+      status: "single",
+      behavior: "troublemaker",
+    },
+  },
+  FIREMAN: {
+    name: "Fireman",
+    health: 10,
+    archetypes: {
+      type: "physical",
+
+      physical: 24,
+      strength: 4,
+      speed: 5,
+      endurance: 3,
+      dexterity: 7,
+      balance: 5,
+
+      mental: 33,
+      memory: 8,
+      puzzles: 4,
+      fortitude: 5,
+      awareness: 5,
+      focus: 9,
+
+      social: 43,
+      relationships: 10,
+      likeability: 8,
+      interrogation: 10,
+      deception: 7,
+      alliances: 8,
+
+      swimming: 7,
+    },
+    traits: {
+      age: 47,
+      status: "married",
+      behavior: "superfan",
+    },
+  },
+  FARMER: { name: "Farmer", health: 4, archetype: "Physical" },
+  RETIRED_MARINE: { name: "Retired Marine", health: 4, archetype: "Physical" },
+  ACCOUNTANT: { name: "Accountant", health: 4, archetype: "Mental" },
+  VIDEO_GAMER: { name: "Video Gamer", health: 4, archetype: "Mental" },
+  CONTRACTOR: { name: "Contractor", health: 4, archetype: "Physical" },
+  STUDENT: { name: "Student", health: 4, archetype: "Social" },
+  POKER_PRO: { name: "Poker Pro", health: 4, archetype: "Social" },
+  ENTREPRENEUR: { name: "Entrepreneur", health: 4, archetype: "Mental" },
+  YOGA_INSTRUCTOR: {
+    name: "Yoga Instructor",
+    health: 4,
+    archetype: "Physical",
+  },
+  PSYCHIATRIST: { name: "Psychiatrist", health: 4, archetype: "Mental" },
+  INFLUENCER: { name: "Influencer", health: 4, archetype: "Social" },
+  CHEF: { name: "Chef", health: 4, archetype: "Social" },
+  TEACHER: { name: "Teacher", archetype: "Mental" },
+}
