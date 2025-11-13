@@ -1,88 +1,83 @@
 import { useState } from "react"
 import "./App.css"
-import { CASTAWAYS } from "./gameConsts.js"
-import { Onboarding } from "./onboarding/Onboarding.jsx"
-import { EnterGame } from "./onboarding/EnterGame.jsx"
-import { TribeDivision } from "./onboarding/TribeDivision.jsx"
-import { CastawaySelection } from "./onboarding/CastawaySelection.jsx"
+import { CONTESTANTS } from "./gameConsts.js"
+import { Header } from "../src/header/Header.jsx"
 import { Gameplay } from "./gameplay/Gameplay.jsx"
-import { Header } from "./global/components/header/Header.jsx"
+import { PhaseInstructions } from "./phaseInstructions/PhaseInstructions.jsx"
 
 function App() {
-  const [step, setStep] = useState("enterGame")
+  const [phase, setPhase] = useState("enterGame")
   const [players, _setPlayers] = useState([
     {
       name: "Player 1",
       icon: "coconut",
       color: "var(--player-pink)",
-      tribe: "purple",
-      castaways: [CASTAWAYS["DOCTOR"], CASTAWAYS["TRIATHLETE"]],
+      crew: "purple",
+      contestants: [CONTESTANTS["DOCTOR"], CONTESTANTS["TRIATHLETE"]],
     },
     {
       name: "Player 2",
       icon: "fish",
       color: "var(--player-green)",
-      tribe: "purple",
-      castaways: [CASTAWAYS["PHOTOGRAPHER"], CASTAWAYS["HAIRDRESSER"]],
+      crew: "purple",
+      contestants: [CONTESTANTS["PHOTOGRAPHER"], CONTESTANTS["HAIRDRESSER"]],
     },
     {
       name: "Player 3",
       icon: "crab",
       color: "var(--player-yellow)",
-      tribe: "purple",
-      castaways: [CASTAWAYS["FIREMAN"], CASTAWAYS["FARMER"]],
+      crew: "purple",
+      contestants: [CONTESTANTS["FIREMAN"], CONTESTANTS["FARMER"]],
     },
     {
       name: "Player 4",
       icon: "fire",
-      color: "var(--player-brown)",
-      tribe: "purple",
-      castaways: [CASTAWAYS["RETIRED_MARINE"], CASTAWAYS["ACCOUNTANT"]],
+      color: "var(--player-grey)",
+      crew: "purple",
+      contestants: [CONTESTANTS["RETIRED_MARINE"], CONTESTANTS["ACCOUNTANT"]],
     },
     {
       name: "Player 5",
       icon: "island",
       color: "var(--player-red)",
-      tribe: "yellow",
-      castaways: [CASTAWAYS["VIDEO_GAMER"], CASTAWAYS["CONTRACTOR"]],
+      crew: "yellow",
+      contestants: [CONTESTANTS["VIDEO_GAMER"], CONTESTANTS["CONTRACTOR"]],
     },
     {
       name: "Player 6",
       icon: "machete",
       color: "var(--player-blue)",
-      tribe: "yellow",
-      castaways: [CASTAWAYS["STUDENT"], CASTAWAYS["POKER_PRO"]],
+      crew: "yellow",
+      contestants: [CONTESTANTS["STUDENT"], CONTESTANTS["POKER_PRO"]],
     },
     {
       name: "Player 7",
       icon: "snake",
       color: "var(--player-purple)",
-      tribe: "yellow",
-      castaways: [CASTAWAYS["ENTREPRENEUR"], CASTAWAYS["YOGA_INSTRUCTOR"]],
+      crew: "yellow",
+      contestants: [
+        CONTESTANTS["ENTREPRENEUR"],
+        CONTESTANTS["YOGA_INSTRUCTOR"],
+      ],
     },
     {
       name: "Player 8",
       icon: "torch",
       color: "var(--player-orange)",
-      tribe: "yellow",
-      castaways: [CASTAWAYS["PSYCHIATRIST"], CASTAWAYS["INFLUENCER"]],
+      crew: "yellow",
+      contestants: [CONTESTANTS["PSYCHIATRIST"], CONTESTANTS["INFLUENCER"]],
     },
   ])
 
   return (
     <>
-      <Header step={step} />
-      {step === "onboarding" && <Onboarding setStep={setStep} />}
-      {step === "enterGame" && (
-        <EnterGame setStep={setStep} players={players} />
-      )}
-      {step === "tribeDivision" && (
-        <TribeDivision setStep={setStep} players={players} />
-      )}
-      {step === "castawaySelection" && (
-        <CastawaySelection setStep={setStep} players={players} />
-      )}
-      {step === "gameplay" && <Gameplay players={players} />}
+      <Header
+        roomCode='ABC123'
+        phase={phase}
+        contestants={CONTESTANTS.length}
+      />
+      <Gameplay phase={phase} players={players} />
+      <PhaseInstructions phase={phase} setPhase={setPhase} />
     </>
   )
 }

@@ -12,43 +12,42 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  /* System Variables */
-  --system-red: #f50d00;
-  --system-green: #00b62e;
-  --system-tan: #e4d9bb;
-  --system-blue: #0085ff;
-  --system-red-light: #f57871;
-  --system-blue-light: #6ab7ff;
-  --system-green-light: #77ea94;
-  --system-black: #191919;
-  --system-grey: #9393ae;
-  --system-white: #ffffff;
-  --system-teal: #9efefe;
-  --system-orange: #ffbf00;
-
   /* Player Variables */
-  --player-yellow: #ffea00;
-  --player-pink: #ff0090;
   --player-green: #00ff40;
-  --player-brown: #9f8564;
-  --player-red: #ff3c00;
-  --player-blue: #0088ff;
-  --player-purple: #d900ff;
-  --player-orange: #ffb200;
-  --player-teal: #00fff3;
-
-  /* Tribe Variables */
-  --tribe-teal-setup: #64d2ff;
-  --tribe-purple: #a900ff;
-  --tribe-yellow: #ffee00;
-  --tribe-blue: #446df4;
+  --player-orange: #ff8000;
+  --player-blue: #00ccff;
+  --player-purple: #8400ff;
+  --player-red: #ff0000;
+  --player-yellow: #fff200;
+  --player-pink: #ff00e5;
+  --player-grey: #868686;
 
   /* Card Variables */
-  --card-background: #ebefed;
-  --card-daily-mail: #237629;
-  --card-camp-life: #674724;
-  --card-tribunal-twist: #8e0707;
+  --card-event: #ff00ea;
+  --card-twist: #b44b4b;
   --card-challenge: #0592a4;
+
+  /* Contestant Variables */
+  --contestant-orange: #ff7300;
+  --contestant-purple: #9b5afc;
+  --contestant-green: #95ff00;
+
+  /* Crew Variables */
+  --crew-purple: #b158fa;
+  --crew-purple-fill: #3d0957;
+  --crew-yellow: #ffee00;
+  --crew-yellow-fill: #585100;
+  --crew-joint: #446df4;
+  --crew-joint-fill: #1f2c54;
+  --crew-assembly: #ff6e00;
+  --crew-assembly-fill: #502300;
+
+  /* System Variables */
+  --system-red: #c00101;
+  --system-green: #018021;
+  --system-black: #191919;
+  --system-grey: #8a8a8b;
+  --system-white: #ffffff;
 }
 
 * {
@@ -60,6 +59,6 @@ li,
 h1,
 h2,
 h3 {
-  font-family: "ADLaM Display", sans-serif;
+  font-family: orbit, sans-serif;
   margin: 0;
 }

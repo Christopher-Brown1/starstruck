@@ -1,48 +1,33 @@
-import { useState } from "react"
-
-import { TribeDeck1 } from "../gameplay/components/tribeDeck/TribeDeck1"
-import { TribeDeck2 } from "../gameplay/components/tribeDeck/TribeDeck2"
-import { PhaseInstructions } from "./components/phaseInstructions/PhaseInstructions"
+import { CrewDeck } from "../gameplay/crewDeck/CrewDeck"
 import style from "./gameplay.module.css"
 
-export const Gameplay = ({ players }) => {
-  const [phase, setPhase] = useState("dailyMail")
-  const handlePhaseChange = (phase) => {
-    setPhase(phase)
-  }
+const BOARD_PHASES = [
+  "event",
+  "lineup",
+  "challenge",
+  "strategize",
+  "summitTwist",
+  "summitCards",
+  "summitVote",
+]
+
+export const Gameplay = ({ phase, players }) => {
   return (
     <>
-      <div className={style.deckContainer}>
-        <TribeDeck1 players={players} />
-        <TribeDeck2 players={players} />
-      </div>
-
-      {phase === "dailyMail" && (
-        <PhaseInstructions
-          onSetPhase={() => handlePhaseChange("arrangeTribes")}
-        >
-          Check out your castaways on your phone now.
-        </PhaseInstructions>
+      {phase === "enterGame" && <p>enter game deck</p>}
+      {phase === "crewDivision" && <p>crew division content</p>}
+      {phase === "contestantReveal" && (
+        <div className={style.deckContainer}>
+          <CrewDeck1 players={players} />
+          <CrewDeck2 players={players} />
+        </div>
       )}
-      {phase === "arrangeTribes" && (
-        <PhaseInstructions onSetPhase={() => handlePhaseChange("challenge")}>
-          Arrange castaways to prepare for the challenge.
-        </PhaseInstructions>
-      )}
-      {phase === "challenge" && (
-        <PhaseInstructions onSetPhase={() => handlePhaseChange("strategize")}>
-          Draw a card for the challenge.
-        </PhaseInstructions>
-      )}
-      {phase === "strategize" && (
-        <PhaseInstructions onSetPhase={() => handlePhaseChange("tribunal")}>
-          It's time to decide who to vote out tonight.
-        </PhaseInstructions>
-      )}
-      {phase === "tribunal" && (
-        <PhaseInstructions onSetPhase={() => handlePhaseChange("dailyMail")}>
-          It's time for any twist incite cards
-        </PhaseInstructions>
+      {BOARD_PHASES.includes(phase) && (
+        <div className={style.deckContainer}>
+          {/* TODO add boolean toggle for merge */}
+          <CrewDeck players={players} color='purple' />
+          <CrewDeck players={players} color='yellow' />
+        </div>
       )}
     </>
   )

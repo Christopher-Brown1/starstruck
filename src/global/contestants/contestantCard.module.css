@@ -1,0 +1,49 @@
+.cardContainer {
+  display: flex;
+  width: 148px;
+  padding: 8px;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  border-radius: 2px;
+  border: 2px solid var(--system-white);
+  background: var(--system-black);
+}
+
+.healthContainer {
+  display: flex;
+  padding: 0 4px;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1 0 0;
+  border-radius: 2px;
+  border: 1px solid var(--system-red);
+}
+
+.healthText {
+  color: var(--system-red, #c00101);
+  font-family: Orbit;
+  font-size: 14px;
+}
+
+.headerText {
+  color: var(--system-white);
+  text-align: center;
+  font-family: Orbit;
+  font-size: 16px;
+  text-transform: uppercase;
+  padding: 8px 0;
+}
+
+.attributeContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+}
+
+.attributeText {
+  color: var(--system-grey);
+  font-family: Orbit;
+  font-size: 12px;
+}

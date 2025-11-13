@@ -1,0 +1,23 @@
+.infoContainer {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.infoTitle {
+  font-family: Orbit;
+  font-size: 24px;
+}
+
+.textContainer {
+  display: flex;
+  padding: 0 4px;
+  justify-content: center;
+  align-items: center;
+}
+
+.infoText {
+  color: var(--system-black);
+  font-family: Orbit;
+  font-size: 24px;
+}

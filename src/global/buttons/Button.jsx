@@ -1,4 +1,4 @@
-import style from "../buttons/button.module.css"
+import style from "./button.module.css"
 
 export function Button({ onClick, children, variant = "primary" }) {
   const variantStyle = {
