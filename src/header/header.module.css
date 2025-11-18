@@ -1,55 +1,14 @@
 .headerContainer {
   display: flex;
-  padding: 32px 0;
   justify-content: space-between;
   align-items: center;
 }
 
 .statusContainer {
   display: flex;
-  padding: 16px;
+  padding: 8px;
   justify-content: center;
   gap: 64px;
   border-radius: 2px;
   border: 2px solid var(--system-white);
-}
-
-.roomCodeContainer {
-  display: flex;
-  padding: 8px;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  border-radius: 8px;
-  border: 1px solid var(--system-white);
-}
-
-.roomCodeText {
-  color: var(--system-white);
-  text-align: center;
-  font-family: "ADLaM Display";
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  margin: 0;
-}
-
-.castawayCounterContainer {
-  display: flex;
-  padding: 8px;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  border-radius: 8px;
-}
-
-.castawayCounterText {
-  text-align: center;
-  font-family: "ADLaM Display";
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  margin: 0;
 }

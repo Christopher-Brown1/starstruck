@@ -13,7 +13,7 @@ export const Header = ({ phase, roomCode, contestants }) => {
   return (
     <>
       <header className={style.headerContainer}>
-        <img src={logo} alt='App Logo' style={{ width: "260px" }} />
+        <img src={logo} alt='App Logo' style={{ width: "240px" }} />
         <div className={style.statusContainer}>
           <GameplayInfo
             color={colors.roomCode}

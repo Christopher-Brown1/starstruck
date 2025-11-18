@@ -6,7 +6,8 @@
 
 .infoTitle {
   font-family: Orbit;
-  font-size: 24px;
+  font-size: 20px;
+  text-transform: uppercase;
 }
 
 .textContainer {
@@ -19,5 +20,6 @@
 .infoText {
   color: var(--system-black);
   font-family: Orbit;
-  font-size: 24px;
+  font-size: 20px;
+  text-transform: uppercase;
 }

@@ -1,6 +1,6 @@
 .playerNameCard {
   display: flex;
-  padding: 4px 16px;
+  padding: 2px 16px;
   justify-content: center;
   align-items: center;
   gap: 16px;
@@ -10,5 +10,6 @@
 .playerNameText {
   color: var(--system-black, #191919);
   font-family: Orbit;
-  font-size: 24px;
+  font-size: 20px;
+  text-transform: uppercase;
 }

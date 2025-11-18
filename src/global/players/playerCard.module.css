@@ -1,18 +1,43 @@
 .playerCard {
   display: flex;
-  width: 140px;
-  height: 150px;
+  width: 160px;
+  height: 160px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 16px;
-  border-radius: 8px;
-  border: 1px solid var(--system-black);
+  border-radius: 4px;
+  background: var(--system-black);
 }
 
-.playerName {
-  color: var(--system-black);
-  text-align: center;
-  font-family: Impact;
-  font-size: 16px;
+.playerInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+}
+
+.nameContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+  background: var(--player-green, #00ff40);
+}
+
+.infoText {
+  color: var(--system-black, #191919);
+  font-family: Orbit;
+  font-size: 20px;
+  text-transform: uppercase;
+}
+
+.crewContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+  background: var(--crew-purple, #b158fa);
 }

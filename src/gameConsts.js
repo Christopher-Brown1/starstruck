@@ -2,8 +2,8 @@ export const CONTESTANTS = {
   DOCTOR: {
     name: "Doctor",
     health: 10,
-    gender: "Male",
-    archetypes: {
+    gender: "M",
+    specialty: {
       type: "logic",
 
       power: 23,
@@ -28,7 +28,7 @@ export const CONTESTANTS = {
       alliances: 5,
     },
     traits: {
-      age: "60 yrs",
+      age: "60",
       status: "parent",
       trait: "hardworker",
     },
@@ -36,8 +36,8 @@ export const CONTESTANTS = {
   TRIATHLETE: {
     name: "Triathlete",
     health: 10,
-    gender: "Male",
-    archetypes: {
+    gender: "M",
+    specialty: {
       type: "power",
 
       power: 44,
@@ -62,7 +62,7 @@ export const CONTESTANTS = {
       alliances: 5,
     },
     traits: {
-      age: "41 yrs",
+      age: "41",
       status: "parent",
       trait: "superfan",
     },
@@ -70,8 +70,8 @@ export const CONTESTANTS = {
   PHOTOGRAPHER: {
     name: "Photographer",
     health: 10,
-    gender: "Male",
-    archetypes: {
+    gender: "M",
+    specialty: {
       type: "presence",
 
       power: 30,
@@ -96,7 +96,7 @@ export const CONTESTANTS = {
       alliances: 9,
     },
     traits: {
-      age: "35 yrs",
+      age: "35",
       status: "single",
       trait: "hard worker",
     },
@@ -104,8 +104,8 @@ export const CONTESTANTS = {
   HAIRDRESSER: {
     name: "Hairdresser",
     health: 10,
-    gender: "Male",
-    archetypes: {
+    gender: "M",
+    specialty: {
       type: "presence",
 
       power: 24,
@@ -132,14 +132,14 @@ export const CONTESTANTS = {
     traits: {
       age: 32,
       status: "single",
-      trait: "troublemaker",
+      trait: "Rebel",
     },
   },
   FIREMAN: {
     name: "Fireman",
     health: 10,
-    gender: "Male",
-    archetypes: {
+    gender: "M",
+    specialty: {
       type: "power",
 
       power: 42,
@@ -164,7 +164,7 @@ export const CONTESTANTS = {
       alliances: 7,
     },
     traits: {
-      age: "33 yrs",
+      age: "33",
       status: "married",
       trait: "hardworker",
     },
@@ -172,8 +172,8 @@ export const CONTESTANTS = {
   FARMER: {
     name: "Farmer",
     health: 10,
-    gender: "Male",
-    archetypes: {
+    gender: "M",
+    specialty: {
       type: "power",
 
       power: 41,
@@ -198,16 +198,16 @@ export const CONTESTANTS = {
       alliances: 7,
     },
     traits: {
-      age: "26 yrs",
+      age: "26",
       status: "married",
       trait: "loyal",
     },
   },
-  RETIRED_MARINE: {
-    name: "Retired Marine",
+  MARINE: {
+    name: "Marine",
     health: 10,
-    gender: "Male",
-    archetypes: {
+    gender: "M",
+    specialty: {
       type: "power",
 
       power: 40,
@@ -232,7 +232,7 @@ export const CONTESTANTS = {
       alliances: 3,
     },
     traits: {
-      age: "61 yrs",
+      age: "61",
       status: "parent",
       trait: "lazy",
     },
@@ -240,8 +240,8 @@ export const CONTESTANTS = {
   ACCOUNTANT: {
     name: "Accountant",
     health: 10,
-    gender: "Male",
-    archetypes: {
+    gender: "M",
+    specialty: {
       type: "logic",
 
       power: 23,
@@ -266,7 +266,7 @@ export const CONTESTANTS = {
       alliances: 9,
     },
     traits: {
-      age: "27 yrs",
+      age: "27",
       status: "married",
       trait: "lazy",
     },
@@ -274,8 +274,8 @@ export const CONTESTANTS = {
   VIDEO_GAMER: {
     name: "Video Gamer",
     health: 10,
-    gender: "Male",
-    archetypes: {
+    gender: "M",
+    specialty: {
       type: "logic",
 
       power: 25,
@@ -300,7 +300,7 @@ export const CONTESTANTS = {
       alliances: 5,
     },
     traits: {
-      age: "21 yrs",
+      age: "21",
       status: "single",
       trait: "superfan",
     },
@@ -308,8 +308,8 @@ export const CONTESTANTS = {
   CONTRACTOR: {
     name: "Contractor",
     health: 10,
-    gender: "Male",
-    archetypes: {
+    gender: "M",
+    specialty: {
       type: "power",
 
       power: 39,
@@ -336,7 +336,7 @@ export const CONTESTANTS = {
       swimming: 6,
     },
     traits: {
-      age: "49 yrs",
+      age: "49",
       status: "parent",
       trait: "provider",
     },
@@ -344,8 +344,8 @@ export const CONTESTANTS = {
   STUDENT: {
     name: "Student",
     health: 10,
-    gender: "Male",
-    archetypes: {
+    gender: "M",
+    specialty: {
       type: "presence",
 
       power: 31,
@@ -370,7 +370,7 @@ export const CONTESTANTS = {
       alliances: 10,
     },
     traits: {
-      age: "22 yrs",
+      age: "22",
       status: "single",
       trait: "loyal",
     },
@@ -378,8 +378,8 @@ export const CONTESTANTS = {
   POKER_PRO: {
     name: "Poker Pro",
     health: 10,
-    gender: "Male",
-    archetypes: {
+    gender: "M",
+    specialty: {
       type: "presence",
 
       power: 24,
@@ -404,7 +404,7 @@ export const CONTESTANTS = {
       alliances: 9,
     },
     traits: {
-      age: "44 yrs",
+      age: "44",
       status: "married",
       trait: "superfan",
     },
@@ -412,8 +412,8 @@ export const CONTESTANTS = {
   ENTREPRENEUR: {
     name: "Entrepreneur",
     health: 10,
-    gender: "Male",
-    archetypes: {
+    gender: "M",
+    specialty: {
       type: "logic",
 
       power: 32,
@@ -438,16 +438,16 @@ export const CONTESTANTS = {
       alliances: 4,
     },
     traits: {
-      age: "48 yrs",
+      age: "48",
       status: "parent",
-      trait: "troublemaker",
+      trait: "Rebel",
     },
   },
-  YOGA_INSTRUCTOR: {
-    name: "Yoga Instructor",
+  YOGA_TEACHER: {
+    name: "Yoga Teacher",
     health: 10,
-    gender: "Male",
-    archetypes: {
+    gender: "M",
+    specialty: {
       type: "power",
 
       power: 41,
@@ -472,16 +472,16 @@ export const CONTESTANTS = {
       alliances: 6,
     },
     traits: {
-      age: "28 yrs",
+      age: "28",
       status: "single",
-      trait: "troublemaker",
+      trait: "Rebel",
     },
   },
   PSYCHIATRIST: {
     name: "Psychiatrist",
     health: 10,
-    gender: "Male",
-    archetypes: {
+    gender: "M",
+    specialty: {
       type: "logic",
 
       power: 23,
@@ -506,7 +506,7 @@ export const CONTESTANTS = {
       alliances: 2,
     },
     traits: {
-      age: "41 yrs",
+      age: "41",
       status: "married",
       trait: "provider",
     },
@@ -514,8 +514,8 @@ export const CONTESTANTS = {
   INFLUENCER: {
     name: "Influencer",
     health: 10,
-    gender: "Male",
-    archetypes: {
+    gender: "M",
+    specialty: {
       type: "presence",
 
       power: 20,
@@ -540,7 +540,7 @@ export const CONTESTANTS = {
       alliances: 8,
     },
     traits: {
-      age: "27 yrs",
+      age: "27",
       status: "single",
       trait: "lazy",
     },
@@ -548,8 +548,8 @@ export const CONTESTANTS = {
   CHEF: {
     name: "Chef",
     health: 10,
-    gender: "Male",
-    archetypes: {
+    gender: "M",
+    specialty: {
       type: "presence",
 
       power: 27,
@@ -574,7 +574,7 @@ export const CONTESTANTS = {
       alliances: 8,
     },
     traits: {
-      age: "38 yrs",
+      age: "38",
       status: "married",
       trait: "provider",
     },
@@ -582,8 +582,8 @@ export const CONTESTANTS = {
   TEACHER: {
     name: "Teacher",
     health: 10,
-    gender: "Male",
-    archetypes: {
+    gender: "M",
+    specialty: {
       type: "logic",
 
       power: 17,
@@ -608,14 +608,14 @@ export const CONTESTANTS = {
       alliances: 5,
     },
     traits: {
-      age: "51 yrs",
+      age: "51",
       status: "parent",
       trait: "loyal",
     },
   },
 }
 
-export const DAILYMAIL = [
+export const EVENT = [
   {
     name: "Double Down",
     text: "All players receive two Camp Life cards each.",

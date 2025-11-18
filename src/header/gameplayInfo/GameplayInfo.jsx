@@ -4,13 +4,10 @@ export const GameplayInfo = ({ color, title, content }) => {
   return (
     <>
       <div className={style.infoContainer}>
-        <p className={style.infoTitle} style={{ color: { color } }}>
+        <p className={style.infoTitle} style={{ color: color }}>
           {title}
         </p>
-        <div
-          className={style.textContainer}
-          style={{ backgroundColor: `var(--system-red)` }}
-        >
+        <div className={style.textContainer} style={{ backgroundColor: color }}>
           <p className={style.infoText}>{content}</p>
         </div>
       </div>

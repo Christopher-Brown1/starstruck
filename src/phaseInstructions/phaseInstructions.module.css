@@ -5,6 +5,10 @@
   align-items: center;
 }
 
+.phoneIcon {
+  width: 40px;
+}
+
 .text {
   color: var(--system-white);
   text-align: center;

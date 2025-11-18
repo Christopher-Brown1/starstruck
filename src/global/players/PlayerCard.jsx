@@ -1,34 +1,57 @@
-import style from "../onboarding/playerCard.module.css"
+import style from "../players/playerCard.module.css"
 
-import coconut from "../global/assets/coconut.svg"
-import crab from "../global/assets/coconut.svg"
-import fire from "../global/assets/coconut.svg"
-import fish from "../global/assets/coconut.svg"
-import island from "../global/assets/coconut.svg"
-import machete from "../global/assets/coconut.svg"
-import snake from "../global/assets/coconut.svg"
-import torch from "../global/assets/coconut.svg"
+import alien from "../assets/alien.svg"
+import helmet from "../assets/helmet.svg"
+import microscope from "../assets/microscope.svg"
+import moon from "../assets/moon.svg"
+import rocket from "../assets/rocket.svg"
+import satellite from "../assets/satellite.svg"
+import stars from "../assets/stars.svg"
+import sun from "../assets/sun.svg"
 
-const iconMap = {
-  coconut,
-  crab,
-  fire,
-  fish,
-  island,
-  machete,
-  snake,
-  torch,
+const ICONS = {
+  alien: alien,
+  helmet: helmet,
+  microscope: microscope,
+  moon: moon,
+  rocket: rocket,
+  satellite: satellite,
+  stars: stars,
+  sun: sun,
 }
 
-export const PlayerCard = ({ player }) => {
+const CREW_COLORS = {
+  purple: "var(--crew-purple)",
+  yellow: "var(--crew-yellow)",
+}
+
+export const PlayerCard = ({ phase, player }) => {
   return (
-    <div className={style.playerCard} style={{ backgroundColor: player.color }}>
-      <h3 className={style.playerName}>{player.name}</h3>
+    <div
+      className={style.playerCard}
+      style={{ border: `4px solid ${player.color}` }}
+    >
       <img
-        src={iconMap[player.icon]}
+        src={ICONS[player.icon]}
         alt='Player Icon'
-        className={style.playerIcon}
+        // className={style.playerIcon}
       />
+      <div className={style.playerInfo}>
+        <div
+          className={style.nameContainer}
+          style={{ background: `${player.color}` }}
+        >
+          <h3 className={style.infoText}>{player.name}</h3>
+        </div>
+        {phase == "crewDivision" && (
+          <div
+            className={style.crewContainer}
+            style={{ background: `${CREW_COLORS[player.crew]}` }}
+          >
+            <h3 className={style.infoText}>{player.crew}</h3>
+          </div>
+        )}
+      </div>
     </div>
   )
 }

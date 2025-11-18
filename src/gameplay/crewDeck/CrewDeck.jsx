@@ -4,7 +4,7 @@ import { ContestantCard } from "../../global/contestants/ContestantCard"
 
 export const CrewDeck = ({ players, color }) => {
   return (
-    <div className={style.tribeDeck}>
+    <div className={style.crewDeck}>
       <div className={style.deckHeader}>
         <div
           className={style.headerTab}
@@ -14,7 +14,9 @@ export const CrewDeck = ({ players, color }) => {
             background: `var(--crew-${color}-fill)`,
           }}
         >
-          <h2 className={style.headerText}>{color} Tribe</h2>
+          <h2 className={style.headerText} style={{ color: color }}>
+            {color} Crew
+          </h2>
         </div>
         <div className={style.playersContainer}>
           {players
@@ -24,7 +26,13 @@ export const CrewDeck = ({ players, color }) => {
             ))}
         </div>
       </div>
-      <div className={style.contestantsContainer}>
+      <div
+        className={style.contestantsContainer}
+        style={{
+          border: `2px solid var(--crew-${color})`,
+          background: `var(--crew-${color}-fill)`,
+        }}
+      >
         {players
           .filter((player) => player.crew === color)
           .reduce((acc, player) => {

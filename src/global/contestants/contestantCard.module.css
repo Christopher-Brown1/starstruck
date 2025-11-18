@@ -15,9 +15,9 @@
   padding: 0 4px;
   justify-content: space-between;
   align-items: center;
-  flex: 1 0 0;
   border-radius: 2px;
   border: 1px solid var(--system-red);
+  align-self: stretch;
 }
 
 .healthText {
@@ -41,9 +41,19 @@
   align-items: center;
   align-self: stretch;
 }
+.attributeContainerG {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+  color: var(--system-grey);
+}
+
+.fontGrey {
+  color: var(--system-grey);
+}
 
 .attributeText {
-  color: var(--system-grey);
   font-family: Orbit;
   font-size: 12px;
 }
