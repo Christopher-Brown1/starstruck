@@ -4,6 +4,8 @@ import { CONTESTANTS } from "./gameConsts.js"
 import { Header } from "../src/header/Header.jsx"
 import { Gameplay } from "./gameplay/Gameplay.jsx"
 import { PhaseInstructions } from "./phaseInstructions/PhaseInstructions.jsx"
+// import { EventCard } from "./gameplay/cards/EventCard.jsx"
+// import { ChallengeCard } from "./gameplay/cards/ChallengeCard.jsx"
 
 function App() {
   const [phase, setPhase] = useState("enterGame")
@@ -13,56 +15,56 @@ function App() {
       icon: "sun",
       color: "var(--player-pink)",
       crew: "purple",
-      contestants: [CONTESTANTS["DOCTOR"], CONTESTANTS["TRIATHLETE"]],
+      contestants: [CONTESTANTS["STUDENT"], CONTESTANTS["ACCOUNTANT"]],
     },
     {
       name: "Player 2",
       icon: "rocket",
       color: "var(--player-green)",
       crew: "purple",
-      contestants: [CONTESTANTS["PHOTOGRAPHER"], CONTESTANTS["HAIRDRESSER"]],
+      contestants: [CONTESTANTS["ARCHITECT"], CONTESTANTS["PARAMEDIC"]],
     },
     {
       name: "Player 3",
       icon: "stars",
       color: "var(--player-yellow)",
       crew: "purple",
-      contestants: [CONTESTANTS["FIREMAN"], CONTESTANTS["FARMER"]],
+      contestants: [CONTESTANTS["MECHANIC"], CONTESTANTS["COURIER"]],
     },
     {
       name: "Player 4",
       icon: "moon",
       color: "var(--player-grey)",
       crew: "purple",
-      contestants: [CONTESTANTS["MARINE"], CONTESTANTS["ACCOUNTANT"]],
+      contestants: [CONTESTANTS["SALESPERSON"], CONTESTANTS["BROKER"]],
     },
     {
       name: "Player 5",
       icon: "satellite",
       color: "var(--player-red)",
       crew: "yellow",
-      contestants: [CONTESTANTS["VIDEO_GAMER"], CONTESTANTS["CONTRACTOR"]],
+      contestants: [CONTESTANTS["SCIENTIST"], CONTESTANTS["PROFESSOR"]],
     },
     {
       name: "Player 6",
       icon: "microscope",
       color: "var(--player-blue)",
       crew: "yellow",
-      contestants: [CONTESTANTS["STUDENT"], CONTESTANTS["POKER_PRO"]],
+      contestants: [CONTESTANTS["LIBRARIAN"], CONTESTANTS["SOLDIER"]],
     },
     {
       name: "Player 7",
       icon: "alien",
       color: "var(--player-purple)",
       crew: "yellow",
-      contestants: [CONTESTANTS["ENTREPRENEUR"], CONTESTANTS["YOGA_TEACHER"]],
+      contestants: [CONTESTANTS["COACH"], CONTESTANTS["BUILDER"]],
     },
     {
       name: "Player 8",
       icon: "helmet",
       color: "var(--player-orange)",
       crew: "yellow",
-      contestants: [CONTESTANTS["PSYCHIATRIST"], CONTESTANTS["INFLUENCER"]],
+      contestants: [CONTESTANTS["HOUSEWIFE"], CONTESTANTS["POLITICIAN"]],
     },
   ])
   const contestantsRemaining = CONTESTANTS.length
@@ -80,6 +82,7 @@ function App() {
         phase={phase}
         contestants={contestantsRemaining}
       />
+      {/* <ChallengeCard /> */}
       <Gameplay phase={phase} players={players} />
       <PhaseInstructions phase={phase} setPhase={setPhase} />
     </div>

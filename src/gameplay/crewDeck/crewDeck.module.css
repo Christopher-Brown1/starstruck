@@ -14,7 +14,7 @@
 
 .headerTab {
   display: flex;
-  padding: 2px 4px;
+  padding: 2px 8px;
   justify-content: center;
   align-items: center;
   border-radius: 4px 4px 0 0;
@@ -29,7 +29,7 @@
 .playersContainer {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 8px;
 }
 
 .contestantsContainer {
@@ -40,6 +40,4 @@
   gap: 24px;
   align-self: stretch;
   border-radius: 0 0 4px 4px;
-  border: 2px solid var(--crew-purple, #b158fa);
-  background: var(--crew-purple-fill, #3d0957);
 }

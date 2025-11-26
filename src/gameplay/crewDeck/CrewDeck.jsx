@@ -9,12 +9,14 @@ export const CrewDeck = ({ players, color }) => {
         <div
           className={style.headerTab}
           style={{
-            color: `var(--crew-${color})`,
             border: `2px solid var(--crew-${color})`,
             background: `var(--crew-${color}-fill)`,
           }}
         >
-          <h2 className={style.headerText} style={{ color: color }}>
+          <h2
+            className={style.headerText}
+            style={{ color: `var(--crew-${color})` }}
+          >
             {color} Crew
           </h2>
         </div>
