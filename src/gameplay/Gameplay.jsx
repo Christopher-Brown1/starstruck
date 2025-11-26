@@ -1,48 +1,70 @@
-import { useState } from "react"
-
-import { TribeDeck1 } from "../gameplay/components/tribeDeck/TribeDeck1"
-import { TribeDeck2 } from "../gameplay/components/tribeDeck/TribeDeck2"
-import { PhaseInstructions } from "./components/phaseInstructions/PhaseInstructions"
+import { CrewDeck } from "../gameplay/crewDeck/CrewDeck"
+import { PlayerCard } from "../global/players/PlayerCard"
 import style from "./gameplay.module.css"
 
-export const Gameplay = ({ players }) => {
-  const [phase, setPhase] = useState("dailyMail")
-  const handlePhaseChange = (phase) => {
-    setPhase(phase)
-  }
+const BOARD_PHASES = [
+  "event",
+  "lineup",
+  "challenge",
+  "strategize",
+  "summitTwist",
+  "summitCards",
+  "summitVote",
+]
+
+export const Gameplay = ({ phase, players }) => {
   return (
     <>
-      <div className={style.deckContainer}>
-        <TribeDeck1 players={players} />
-        <TribeDeck2 players={players} />
-      </div>
+      {phase === "enterGame" && (
+        <div className={style.enterContainer}>
+          <div className={style.playerDeck}>
+            <h2 className={style.headerText}>Players</h2>
+            <div className={style.cardsContainer}>
+              {players.map((player) => (
+                <PlayerCard phase={phase} player={player} />
+              ))}
+            </div>
+          </div>
+          <div className={style.textContainer}>
+            <p className={style.enterText}>How to Enter:</p>
+            <p className={style.enterText}>Visit website.com on your phone.</p>
+            <p className={style.enterText}>
+              Enter your name and the room code.
+            </p>
+            <p className={style.enterText}>
+              Follow setup directions on your mobile phone.
+            </p>
+          </div>
+        </div>
+      )}
 
-      {phase === "dailyMail" && (
-        <PhaseInstructions
-          onSetPhase={() => handlePhaseChange("arrangeTribes")}
+      {phase === "crewDivision" && (
+        <div
+          className={style.playerDeck}
+          style={{ width: "760px", margin: "64px auto" }}
         >
-          Check out your castaways on your phone now.
-        </PhaseInstructions>
+          <h2 className={style.headerText}>Players</h2>
+          <div className={style.cardsContainer}>
+            {players.map((player) => (
+              <PlayerCard phase={phase} player={player} />
+            ))}
+          </div>
+        </div>
       )}
-      {phase === "arrangeTribes" && (
-        <PhaseInstructions onSetPhase={() => handlePhaseChange("challenge")}>
-          Arrange castaways to prepare for the challenge.
-        </PhaseInstructions>
+
+      {phase === "contestantReveal" && (
+        <div className={style.deckContainer}>
+          <CrewDeck players={players} color='purple' />
+          <CrewDeck players={players} color='yellow' />
+        </div>
       )}
-      {phase === "challenge" && (
-        <PhaseInstructions onSetPhase={() => handlePhaseChange("strategize")}>
-          Draw a card for the challenge.
-        </PhaseInstructions>
-      )}
-      {phase === "strategize" && (
-        <PhaseInstructions onSetPhase={() => handlePhaseChange("tribunal")}>
-          It's time to decide who to vote out tonight.
-        </PhaseInstructions>
-      )}
-      {phase === "tribunal" && (
-        <PhaseInstructions onSetPhase={() => handlePhaseChange("dailyMail")}>
-          It's time for any twist incite cards
-        </PhaseInstructions>
+
+      {BOARD_PHASES.includes(phase) && (
+        <div className={style.deckContainer}>
+          {/* TODO add boolean toggle for merge */}
+          <CrewDeck players={players} color='purple' />
+          <CrewDeck players={players} color='yellow' />
+        </div>
       )}
     </>
   )

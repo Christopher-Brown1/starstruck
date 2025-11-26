@@ -1,0 +1,43 @@
+.crewDeck {
+  display: flex;
+  flex-direction: column;
+  /* align-items: flex-start; */
+  align-self: stretch;
+}
+
+.deckHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+}
+
+.headerTab {
+  display: flex;
+  padding: 2px 8px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px 4px 0 0;
+}
+
+.headerText {
+  font-family: Orbit;
+  font-size: 20px;
+  text-transform: uppercase;
+}
+
+.playersContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.contestantsContainer {
+  display: flex;
+  padding: 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  align-self: stretch;
+  border-radius: 0 0 4px 4px;
+}

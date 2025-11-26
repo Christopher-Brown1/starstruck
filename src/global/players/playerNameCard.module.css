@@ -1,0 +1,15 @@
+.playerNameCard {
+  display: flex;
+  padding: 2px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  border-radius: 4px 4px 0 0;
+}
+
+.playerNameText {
+  color: var(--system-black, #191919);
+  font-family: Orbit;
+  font-size: 20px;
+  text-transform: uppercase;
+}

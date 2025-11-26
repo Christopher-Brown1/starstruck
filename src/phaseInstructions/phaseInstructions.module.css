@@ -1,0 +1,17 @@
+.instructionContainer {
+  display: flex;
+  padding: 8px 0;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.phoneIcon {
+  width: 40px;
+}
+
+.text {
+  color: var(--system-white);
+  text-align: center;
+  font-family: Orbit;
+  font-size: 36px;
+}

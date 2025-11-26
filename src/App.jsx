@@ -1,89 +1,91 @@
 import { useState } from "react"
 import "./App.css"
-import { CASTAWAYS } from "./gameConsts.js"
-import { Onboarding } from "./onboarding/Onboarding.jsx"
-import { EnterGame } from "./onboarding/EnterGame.jsx"
-import { TribeDivision } from "./onboarding/TribeDivision.jsx"
-import { CastawaySelection } from "./onboarding/CastawaySelection.jsx"
+import { CONTESTANTS } from "./gameConsts.js"
+import { Header } from "../src/header/Header.jsx"
 import { Gameplay } from "./gameplay/Gameplay.jsx"
-import { Header } from "./global/components/header/Header.jsx"
+import { PhaseInstructions } from "./phaseInstructions/PhaseInstructions.jsx"
+// import { EventCard } from "./gameplay/cards/EventCard.jsx"
+// import { ChallengeCard } from "./gameplay/cards/ChallengeCard.jsx"
 
 function App() {
-  const [step, setStep] = useState("enterGame")
+  const [phase, setPhase] = useState("enterGame")
   const [players, _setPlayers] = useState([
     {
       name: "Player 1",
-      icon: "coconut",
+      icon: "sun",
       color: "var(--player-pink)",
-      tribe: "purple",
-      castaways: [CASTAWAYS["DOCTOR"], CASTAWAYS["TRIATHLETE"]],
+      crew: "purple",
+      contestants: [CONTESTANTS["STUDENT"], CONTESTANTS["ACCOUNTANT"]],
     },
     {
       name: "Player 2",
-      icon: "fish",
+      icon: "rocket",
       color: "var(--player-green)",
-      tribe: "purple",
-      castaways: [CASTAWAYS["PHOTOGRAPHER"], CASTAWAYS["HAIRDRESSER"]],
+      crew: "purple",
+      contestants: [CONTESTANTS["ARCHITECT"], CONTESTANTS["PARAMEDIC"]],
     },
     {
       name: "Player 3",
-      icon: "crab",
+      icon: "stars",
       color: "var(--player-yellow)",
-      tribe: "purple",
-      castaways: [CASTAWAYS["FIREMAN"], CASTAWAYS["FARMER"]],
+      crew: "purple",
+      contestants: [CONTESTANTS["MECHANIC"], CONTESTANTS["COURIER"]],
     },
     {
       name: "Player 4",
-      icon: "fire",
-      color: "var(--player-brown)",
-      tribe: "purple",
-      castaways: [CASTAWAYS["RETIRED_MARINE"], CASTAWAYS["ACCOUNTANT"]],
+      icon: "moon",
+      color: "var(--player-grey)",
+      crew: "purple",
+      contestants: [CONTESTANTS["SALESPERSON"], CONTESTANTS["BROKER"]],
     },
     {
       name: "Player 5",
-      icon: "island",
+      icon: "satellite",
       color: "var(--player-red)",
-      tribe: "yellow",
-      castaways: [CASTAWAYS["VIDEO_GAMER"], CASTAWAYS["CONTRACTOR"]],
+      crew: "yellow",
+      contestants: [CONTESTANTS["SCIENTIST"], CONTESTANTS["PROFESSOR"]],
     },
     {
       name: "Player 6",
-      icon: "machete",
+      icon: "microscope",
       color: "var(--player-blue)",
-      tribe: "yellow",
-      castaways: [CASTAWAYS["STUDENT"], CASTAWAYS["POKER_PRO"]],
+      crew: "yellow",
+      contestants: [CONTESTANTS["LIBRARIAN"], CONTESTANTS["SOLDIER"]],
     },
     {
       name: "Player 7",
-      icon: "snake",
+      icon: "alien",
       color: "var(--player-purple)",
-      tribe: "yellow",
-      castaways: [CASTAWAYS["ENTREPRENEUR"], CASTAWAYS["YOGA_INSTRUCTOR"]],
+      crew: "yellow",
+      contestants: [CONTESTANTS["COACH"], CONTESTANTS["BUILDER"]],
     },
     {
       name: "Player 8",
-      icon: "torch",
+      icon: "helmet",
       color: "var(--player-orange)",
-      tribe: "yellow",
-      castaways: [CASTAWAYS["PSYCHIATRIST"], CASTAWAYS["INFLUENCER"]],
+      crew: "yellow",
+      contestants: [CONTESTANTS["HOUSEWIFE"], CONTESTANTS["POLITICIAN"]],
     },
   ])
+  const contestantsRemaining = CONTESTANTS.length
 
   return (
-    <>
-      <Header step={step} />
-      {step === "onboarding" && <Onboarding setStep={setStep} />}
-      {step === "enterGame" && (
-        <EnterGame setStep={setStep} players={players} />
-      )}
-      {step === "tribeDivision" && (
-        <TribeDivision setStep={setStep} players={players} />
-      )}
-      {step === "castawaySelection" && (
-        <CastawaySelection setStep={setStep} players={players} />
-      )}
-      {step === "gameplay" && <Gameplay players={players} />}
-    </>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "48px",
+      }}
+    >
+      <Header
+        roomCode='CODE123'
+        phase={phase}
+        contestants={contestantsRemaining}
+      />
+      {/* <ChallengeCard /> */}
+      <Gameplay phase={phase} players={players} />
+      <PhaseInstructions phase={phase} setPhase={setPhase} />
+    </div>
   )
 }
 
