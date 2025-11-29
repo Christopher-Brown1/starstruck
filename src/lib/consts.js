@@ -75,7 +75,7 @@ export const PHASES = {
 export const initialState = {
   loading: true,
   roomCode: null,
-  phase: PHASES.ENTER_GAME,
+  phase: null,
   players: MOCK_PLAYERS,
   contestants: [],
 }

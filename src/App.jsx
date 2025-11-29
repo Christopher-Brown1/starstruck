@@ -1,6 +1,7 @@
 import { useContext, useEffect } from "react"
 
 import { StateContext } from "./lib/StateContext"
+import { PHASES } from "./lib/consts"
 import "./App.css"
 import { Header } from "../src/header/Header.jsx"
 import { Gameplay } from "./gameplay/Gameplay.jsx"
@@ -13,9 +14,9 @@ function App() {
   const { state, setStartState } = useContext(StateContext)
 
   useEffect(() => {
-    if (state?.loading)
+    if (state?.loading && state.phase === PHASES.ENTER_GAME)
       createRoom().then((startState) => setStartState(startState))
-  }, [state?.loading, setStartState])
+  }, [state?.loading, state.phase, setStartState])
 
   const setPhase = () => {}
 

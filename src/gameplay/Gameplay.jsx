@@ -1,8 +1,12 @@
+import { useContext } from "react"
+
 import { CrewDeck } from "../gameplay/crewDeck/CrewDeck"
 import { PlayerCard } from "../global/players/PlayerCard"
 import style from "./gameplay.module.css"
 import { EnterGame } from "./phases/EnterGame"
+
 import { PHASES } from "../lib/consts"
+import { StateContext } from "../lib/StateContext"
 
 const BOARD_PHASES = [
   "event",
@@ -15,6 +19,17 @@ const BOARD_PHASES = [
 ]
 
 export const Gameplay = ({ phase, players }) => {
+  const { state, setPhase } = useContext(StateContext)
+
+  if (state.loading) {
+    return (
+      <div>
+        <h1>Welcome to StarStruck</h1>
+        <h3>Start a new game now.</h3>
+        <button onClick={() => setPhase(PHASES.ENTER_GAME)}>Start Game</button>
+      </div>
+    )
+  }
   return (
     <>
       {phase === PHASES.ENTER_GAME && <EnterGame />}
