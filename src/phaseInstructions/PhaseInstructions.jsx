@@ -1,12 +1,16 @@
+import { useContext } from "react"
 import style from "../phaseInstructions/phaseInstructions.module.css"
 import { PHASES } from "../lib/consts"
 import phoneIcon from "../phaseInstructions/assets/phoneIcon.svg"
 import { NextButton } from "../global/buttons/NextButton"
+import { StateContext } from "../lib/StateContext"
 
-export const PhaseInstructions = ({ phase, setPhase }) => {
+export const PhaseInstructions = () => {
+  const { state, setPhase } = useContext(StateContext)
+
   return (
     <>
-      {phase === PHASES.ENTER_GAME && (
+      {state.phase === PHASES.ENTER_GAME && (
         <div className={style.instructionContainer}>
           <img src={phoneIcon} className={style.phoneIcon} />
           <h3 className={style.text}>
@@ -18,7 +22,7 @@ export const PhaseInstructions = ({ phase, setPhase }) => {
           />
         </div>
       )}
-      {phase === PHASES.CREW_DIVISION && (
+      {state.phase === PHASES.CREW_DIVISION && (
         <div className={style.instructionContainer}>
           <img src={phoneIcon} className={style.phoneIcon} />
           <h3 className={style.text}>Find out which crew you are on.</h3>
@@ -28,7 +32,7 @@ export const PhaseInstructions = ({ phase, setPhase }) => {
           />
         </div>
       )}
-      {phase === PHASES.CONTESTANT_REVEAL && (
+      {state.phase === PHASES.CONTESTANT_REVEAL && (
         <div className={style.instructionContainer}>
           <img src={phoneIcon} className={style.phoneIcon} />
           <h3 className={style.text}>Identify your contestants.</h3>
@@ -38,7 +42,7 @@ export const PhaseInstructions = ({ phase, setPhase }) => {
           />
         </div>
       )}
-      {phase === PHASES.EVENT && (
+      {state.phase === PHASES.EVENT && (
         <div className={style.instructionContainer}>
           <img src={phoneIcon} className={style.phoneIcon} />
           <h3 className={style.text}>View and use event cards.</h3>
@@ -48,7 +52,7 @@ export const PhaseInstructions = ({ phase, setPhase }) => {
           />
         </div>
       )}
-      {phase === PHASES.LINEUP && (
+      {state.phase === PHASES.LINEUP && (
         <div className={style.instructionContainer}>
           <h3 className={style.text}>
             Arrange contestants to prepare for the challenge.
@@ -59,7 +63,7 @@ export const PhaseInstructions = ({ phase, setPhase }) => {
           />
         </div>
       )}
-      {phase === PHASES.CHALLENGE && (
+      {state.phase === PHASES.CHALLENGE && (
         <div className={style.instructionContainer}>
           <h3 className={style.text}>Click to start the challenge</h3>
           <NextButton
@@ -68,7 +72,7 @@ export const PhaseInstructions = ({ phase, setPhase }) => {
           />
         </div>
       )}
-      {phase === PHASES.STRATEGIZE && (
+      {state.phase === PHASES.STRATEGIZE && (
         <div className={style.instructionContainer}>
           <h3 className={style.text}>
             Talk with your crew to decide who to vote out.
@@ -79,7 +83,7 @@ export const PhaseInstructions = ({ phase, setPhase }) => {
           />
         </div>
       )}
-      {phase === PHASES.SUMMIT_TWIST && (
+      {state.phase === PHASES.SUMMIT_TWIST && (
         <div className={style.instructionContainer}>
           <h3 className={style.text}>A summit twist card has been played.</h3>
           <NextButton
@@ -88,7 +92,7 @@ export const PhaseInstructions = ({ phase, setPhase }) => {
           />
         </div>
       )}
-      {phase === PHASES.SUMMIT_CARDS && (
+      {state.phase === PHASES.SUMMIT_CARDS && (
         <div className={style.instructionContainer}>
           <img src={phoneIcon} className={style.phoneIcon} />
           <h3 className={style.text}>
@@ -100,7 +104,7 @@ export const PhaseInstructions = ({ phase, setPhase }) => {
           />
         </div>
       )}
-      {phase === PHASES.SUMMIT_VOTE && (
+      {state.phase === PHASES.SUMMIT_VOTE && (
         <div className={style.instructionContainer}>
           <img src={phoneIcon} className={style.phoneIcon} />
           <h3 className={style.text}>

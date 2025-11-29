@@ -18,8 +18,6 @@ function App() {
       createRoom().then((startState) => setStartState(startState))
   }, [state?.loading, state.phase, setStartState])
 
-  const setPhase = () => {}
-
   return (
     <div
       style={{
@@ -30,8 +28,8 @@ function App() {
     >
       <Header />
       {/* <ChallengeCard /> */}
-      <Gameplay phase={state.phase} players={state.players} />
-      <PhaseInstructions phase={state.phase} setPhase={setPhase} />
+      <Gameplay />
+      <PhaseInstructions />
     </div>
   )
 }

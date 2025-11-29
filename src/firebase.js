@@ -4,6 +4,7 @@ import { getFirestore } from "firebase/firestore"
 
 import { generateRoomCode } from "./lib/utils"
 import { PHASES } from "./lib/consts"
+import { MOCK_PLAYERS } from "./lib/consts"
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_API_KEY,
@@ -29,7 +30,7 @@ export const createRoom = async () => {
   await setDoc(roomRef, {
     phase: PHASES.ENTER_GAME,
     roomCode: randomRoomCode,
-    players: [],
+    players: MOCK_PLAYERS,
     contestants: [],
   })
 

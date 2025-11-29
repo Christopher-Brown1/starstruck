@@ -6,6 +6,7 @@ export const MOCK_PLAYERS = [
     icon: "sun",
     color: "var(--player-pink)",
     crew: "purple",
+    revealed: false,
     contestants: [CONTESTANTS["STUDENT"], CONTESTANTS["ACCOUNTANT"]],
   },
   {
@@ -13,6 +14,7 @@ export const MOCK_PLAYERS = [
     icon: "rocket",
     color: "var(--player-green)",
     crew: "purple",
+    revealed: false,
     contestants: [CONTESTANTS["ARCHITECT"], CONTESTANTS["PARAMEDIC"]],
   },
   {
@@ -20,6 +22,7 @@ export const MOCK_PLAYERS = [
     icon: "stars",
     color: "var(--player-yellow)",
     crew: "purple",
+    revealed: false,
     contestants: [CONTESTANTS["MECHANIC"], CONTESTANTS["COURIER"]],
   },
   {
@@ -27,6 +30,7 @@ export const MOCK_PLAYERS = [
     icon: "moon",
     color: "var(--player-grey)",
     crew: "purple",
+    revealed: false,
     contestants: [CONTESTANTS["SALESPERSON"], CONTESTANTS["BROKER"]],
   },
   {
@@ -34,6 +38,7 @@ export const MOCK_PLAYERS = [
     icon: "satellite",
     color: "var(--player-red)",
     crew: "yellow",
+    revealed: false,
     contestants: [CONTESTANTS["SCIENTIST"], CONTESTANTS["PROFESSOR"]],
   },
   {
@@ -41,6 +46,7 @@ export const MOCK_PLAYERS = [
     icon: "microscope",
     color: "var(--player-blue)",
     crew: "yellow",
+    revealed: false,
     contestants: [CONTESTANTS["LIBRARIAN"], CONTESTANTS["SOLDIER"]],
   },
   {
@@ -48,6 +54,7 @@ export const MOCK_PLAYERS = [
     icon: "alien",
     color: "var(--player-purple)",
     crew: "yellow",
+    revealed: false,
     contestants: [CONTESTANTS["COACH"], CONTESTANTS["BUILDER"]],
   },
   {
@@ -55,6 +62,7 @@ export const MOCK_PLAYERS = [
     icon: "helmet",
     color: "var(--player-orange)",
     crew: "yellow",
+    revealed: false,
     contestants: [CONTESTANTS["HOUSEWIFE"], CONTESTANTS["POLITICIAN"]],
   },
 ]

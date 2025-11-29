@@ -18,7 +18,7 @@ const BOARD_PHASES = [
   "summitVote",
 ]
 
-export const Gameplay = ({ phase, players }) => {
+export const Gameplay = () => {
   const { state, setPhase } = useContext(StateContext)
 
   if (state.loading) {
@@ -32,34 +32,34 @@ export const Gameplay = ({ phase, players }) => {
   }
   return (
     <>
-      {phase === PHASES.ENTER_GAME && <EnterGame />}
+      {state.phase === PHASES.ENTER_GAME && <EnterGame />}
 
-      {phase === PHASES.CREW_DIVISION && (
+      {state.phase === PHASES.CREW_DIVISION && (
         <div
           className={style.playerDeck}
           style={{ width: "760px", margin: "64px auto" }}
         >
           <h2 className={style.headerText}>Players</h2>
           <div className={style.cardsContainer}>
-            {players.map((player) => (
-              <PlayerCard phase={phase} player={player} />
+            {state.players.map((player) => (
+              <PlayerCard phase={state.phase} player={player} />
             ))}
           </div>
         </div>
       )}
 
-      {phase === PHASES.CONTESTANT_REVEAL && (
+      {state.phase === PHASES.CONTESTANT_REVEAL && (
         <div className={style.deckContainer}>
-          <CrewDeck players={players} color="purple" />
-          <CrewDeck players={players} color="yellow" />
+          <CrewDeck players={state.players} color="purple" />
+          <CrewDeck players={state.players} color="yellow" />
         </div>
       )}
 
-      {BOARD_PHASES.includes(phase) && (
+      {BOARD_PHASES.includes(state.phase) && (
         <div className={style.deckContainer}>
           {/* TODO add boolean toggle for merge */}
-          <CrewDeck players={players} color="purple" />
-          <CrewDeck players={players} color="yellow" />
+          <CrewDeck players={state.players} color="purple" />
+          <CrewDeck players={state.players} color="yellow" />
         </div>
       )}
     </>
