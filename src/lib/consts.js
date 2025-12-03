@@ -1,4 +1,4 @@
-import { CHALLENGECARDS, EVENTCARDS, MOCK_PLAYERS } from "../gameConsts"
+import { CHALLENGECARDS, EVENTCARDS, MOCK_PLAYERS, PHASES } from "../gameConsts"
 import { randomiseArray } from "./utils"
 
 export const initialState = {
