@@ -3,9 +3,73 @@
   flex-direction: column;
   align-items: center;
   gap: 48px;
+  height: 100%;
+  padding-top: 16px;
 }
 
 .logo {
   width: 297px;
   height: 84px;
+}
+
+.colorSelectionContainer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.entryInfoContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 120px;
+}
+
+.entryInfoItem {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 16px;
+}
+
+.entryInfoItemTitle {
+  text-align: start;
+  font-family: Orbit;
+  font-size: 24px;
+  text-transform: uppercase;
+}
+
+.entryInfoInput {
+  background: transparent;
+  width: 100%;
+  height: 60px;
+  border-radius: 8px;
+  border: 4px solid var(--crew-joint, #446df4);
+  padding: 0 16px;
+  font-family: Orbit;
+  font-size: 24px;
+  text-transform: uppercase;
+}
+
+.colorComboContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 32px;
+}
+
+.colorCombo {
+  background: transparent;
+  height: 80px;
+  width: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  border-radius: 8px;
 }

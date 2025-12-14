@@ -6,6 +6,8 @@ import {
   getFirestore,
   serverTimestamp,
   updateDoc,
+  arrayUnion,
+  arrayRemove,
 } from "firebase/firestore"
 
 import { generateRoomCode } from "./lib/utils"
@@ -47,6 +49,32 @@ export const createRoom = async () => {
     roomCode: randomRoomCode,
     players: MOCK_PLAYERS,
     contestants: [],
+  })
+
+  const finalDocSnap = await getDoc(roomRef)
+
+  return finalDocSnap.data()
+}
+
+export const joinRoom = async (roomCode, player) => {
+  const roomRef = doc(db, "rooms", roomCode).withConverter(roomConverter)
+
+  await updateDoc(roomRef, {
+    players: arrayUnion(player),
+  })
+
+  const finalDocSnap = await getDoc(roomRef)
+
+  return finalDocSnap.data()
+}
+export const selectColor = async (roomCode, player, color) => {
+  const roomRef = doc(db, "rooms", roomCode).withConverter(roomConverter)
+  const room = await getDoc(roomRef)
+
+  await updateDoc(roomRef, {
+    players: room.players.map((p) =>
+      p.id === player.id ? { ...p, color } : p
+    ),
   })
 
   const finalDocSnap = await getDoc(roomRef)
