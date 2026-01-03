@@ -1,16 +1,40 @@
-import { useReducer } from "react"
+import { useReducer, useEffect } from "react"
+import { doc, onSnapshot } from "firebase/firestore"
+
 import { initialState, reducer, ACTIONS } from "./consts"
 import { StateContext } from "./StateContext"
-import { updateFirebaseState } from "../firebase"
+import { updateFirebaseState, db, createRoom } from "../firebase"
+import { PHASES } from "../gameConsts"
 
 export const StateProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
 
+  useEffect(() => {
+    if (!state.roomCode) return
+
+    const unsub = onSnapshot(
+      doc(db, "rooms", state.roomCode),
+      updateFromFirebase
+    )
+
+    return () => unsub?.()
+  }, [state.roomCode])
+
+  // Master side effect
+  useEffect(() => {
+    if (!state.isMaster) return
+
+    if (state?.loading && state.phase === PHASES.ENTER_GAME)
+      createRoom().then((room) =>
+        //set room code
+        dispatch({
+          type: ACTIONS.UPDATE_FROM_FIREBASE,
+          payload: { roomCode: room.roomCode },
+        })
+      )
+  }, [state.loading, state.isMaster, state.phase])
+
   // Create functions
-  const setStartState = (startState) => {
-    updateFirebaseState(startState)
-    dispatch({ type: ACTIONS.APP_LOADED, payload: startState })
-  }
   const setPhase = (phase) => {
     updateFirebaseState({ ...state, phase })
     dispatch({ type: ACTIONS.SET_PHASE, payload: phase })
@@ -38,6 +62,11 @@ export const StateProvider = ({ children }) => {
       },
     })
   }
+  const updateFromFirebase = (doc) =>
+    dispatch({
+      type: ACTIONS.UPDATE_FROM_FIREBASE,
+      payload: doc.data ? doc.data() : doc,
+    })
   const setIsClient = () => dispatch({ type: ACTIONS.SET_IS_CLIENT })
   const setIsMaster = () => dispatch({ type: ACTIONS.SET_IS_MASTER })
 
@@ -45,12 +74,12 @@ export const StateProvider = ({ children }) => {
     <StateContext.Provider
       value={{
         state,
-        setStartState,
         setPhase,
         setPlayers,
         dealEventCards,
         setIsClient,
         setIsMaster,
+        updateFromFirebase,
       }}
     >
       {children}

@@ -25,11 +25,11 @@ const CREW_COLORS = {
   yellow: "var(--crew-yellow)",
 }
 
-export const PlayerCard = ({ phase, player, sx = {} }) => {
+export const PlayerCard = ({ phase, player}) => {
   return (
     <div
       className={style.playerCard}
-      style={{ border: `4px solid ${player.color}`, ...sx }}
+      style={{ border: `4px solid ${player.color}` }}
     >
       <img
         src={ICONS[player.icon]}

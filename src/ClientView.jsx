@@ -5,7 +5,8 @@ import { StateContext } from "./lib/StateContext"
 import { PHASES } from "./gameConsts"
 import Logo from "./global/assets/logo.svg"
 import { NextButton } from "./global/buttons/NextButton"
-import { joinRoom, selectColor } from "./firebase"
+import { ACTIONS } from "./lib/consts"
+import { joinRoom } from "./firebase"
 
 import Rocket from "./global/assets/rocket.svg"
 import Helmet from "./global/assets/helmet.svg"
@@ -61,18 +62,20 @@ const COLOR_COMBOS = [
 ]
 
 export const ClientView = () => {
-  const { state, setStartState } = useContext(StateContext)
+  const { state, setStartState, updateFromFirebase } = useContext(StateContext)
   const [entryInfo, setEntryInfo] = useState({
     name: "",
     roomCode: "",
     color: "",
     icon: "",
   })
+  // TODO: Move these states to the state context
   const [inRoom, setInRoom] = useState(false)
+  const [revealed, setRevealed] = useState(false)
 
   return (
     <div className={style.container}>
-      <img className={style.logo} src={Logo} alt="Logo" />
+      <img className={style.logo} src={Logo} alt='Logo' />
 
       {/* Build out here */}
       {state.phase === PHASES.ENTER_GAME &&
@@ -83,7 +86,7 @@ export const ClientView = () => {
                 <p className={style.entryInfoItemTitle}>Name:</p>
                 <input
                   className={style.entryInfoInput}
-                  type="text"
+                  type='text'
                   value={entryInfo.name}
                   onChange={(e) =>
                     setEntryInfo({ ...entryInfo, name: e.target.value })
@@ -94,7 +97,7 @@ export const ClientView = () => {
                 <p className={style.entryInfoItemTitle}>Room Code:</p>
                 <input
                   className={style.entryInfoInput}
-                  type="text"
+                  type='text'
                   value={entryInfo.roomCode}
                   onChange={(e) =>
                     setEntryInfo({ ...entryInfo, roomCode: e.target.value })
@@ -104,63 +107,75 @@ export const ClientView = () => {
             </div>
             <NextButton
               onClick={() => {
-                // joinRoom(entryInfo.roomCode, {
-                //   name: entryInfo.name,
-                //   icon: entryInfo.icon,
-                // }).then((room) => {
-                //   setStartState(room)
-                //   setInRoom(true)
-                // })
+                setEntryInfo({
+                  ...entryInfo,
+                  roomCode: entryInfo.roomCode.toUpperCase(),
+                })
                 setInRoom(true)
               }}
               style={{ height: "68px", width: "68px" }}
             />
           </>
         ) : (
-          <div className={style.colorSelectionContainer}>
-            <p className={style.entryInfoItemTitle}>Select your color:</p>
-            <div className={style.colorComboContainer}>
-              {COLOR_COMBOS.map((colorCombo) => (
-                <button
-                  className={style.colorCombo}
-                  key={colorCombo.color}
-                  onClick={
-                    () =>
-                      // selectColor(
-                      //   entryInfo.roomCode,
-                      //   entryInfo.name,
-                      //   colorCombo.color
-                      // ).then(() =>
-                      setEntryInfo({
-                        ...entryInfo,
+          // TODO: Icons should be selected from the color selection
+          <>
+            <div className={style.colorSelectionContainer}>
+              <p className={style.entryInfoItemTitle}>Select your color:</p>
+              <div className={style.colorComboContainer}>
+                {COLOR_COMBOS.map((colorCombo) => (
+                  <button
+                    className={style.colorCombo}
+                    key={colorCombo.color}
+                    onClick={() => {
+                      // Player joins room
+                      joinRoom(entryInfo.roomCode, {
+                        name: entryInfo.name,
+                        icon: entryInfo.icon,
                         color: colorCombo.color,
-                        icon: colorCombo.icon,
-                      })
-                    // )
-                  }
-                  style={{
-                    border: `4px solid var(--player-${colorCombo.color})`,
-                    // Add opacity also if a color is taken by another player
-                    opacity: entryInfo.color === colorCombo.color ? 0.1 : 1,
-                  }}
-                >
-                  <img src={colorCombo.component} alt={colorCombo.color} />
-                </button>
-              ))}
-            </div>
+                      }).then((room) =>
+                        updateFromFirebase({ roomCode: room.roomCode })
+                      )
+                    }}
+                    style={{
+                      border: `4px solid var(--player-${colorCombo.color})`,
+                      // Add opacity also if a color is taken by another player
+                      opacity: entryInfo.color === colorCombo.color ? 0.1 : 1,
+                    }}
+                  >
+                    <img src={colorCombo.component} alt={colorCombo.color} />
+                  </button>
+                ))}
+              </div>
 
-            {entryInfo.color && (
-              <PlayerCard
-                phase={state.phase}
-                player={{
-                  ...entryInfo,
-                  color: `var(--player-${entryInfo.color})`,
-                }}
-                sx={{ marginTop: "auto" }}
-              />
-            )}
-          </div>
+              {entryInfo.color && (
+                <PlayerCard
+                  phase={state.phase}
+                  player={{
+                    ...entryInfo,
+                    color: `var(--player-${entryInfo.color})`,
+                  }}
+                  style={{ marginTop: "auto" }}
+                />
+              )}
+            </div>
+          </>
         ))}
+
+      {state.phase === PHASES.CREW_DIVISION && (
+        // Change PlayerCard to change the player.revealed to true on click
+        <PlayerCard
+          phase={state.phase}
+          player={{
+            ...entryInfo,
+            color: `var(--player-${
+              state.players.find((p) => p.name === entryInfo.name).color
+            })`,
+          }}
+          onClick={() => {
+            setRevealed(true)
+          }}
+        />
+      )}
     </div>
   )
 }

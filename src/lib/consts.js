@@ -1,4 +1,4 @@
-import { CHALLENGECARDS, EVENTCARDS, MOCK_PLAYERS, PHASES } from "../gameConsts"
+import { CHALLENGECARDS, EVENTCARDS, PHASES } from "../gameConsts"
 import { randomiseArray } from "./utils"
 
 export const initialState = {
@@ -7,7 +7,7 @@ export const initialState = {
   isMaster: false,
   roomCode: null,
   phase: null,
-  players: MOCK_PLAYERS,
+  players: [],
   contestants: [],
   eventCards: randomiseArray([...EVENTCARDS]),
   challengeCards: randomiseArray([...CHALLENGECARDS]),
@@ -41,6 +41,7 @@ export const reducer = (state, action) => {
         isMaster: false,
         phase: PHASES.ENTER_GAME,
       }
+      // TODO: Remove this effect from going to firebase
     case ACTIONS.SET_IS_MASTER:
       return {
         ...state,
@@ -48,6 +49,8 @@ export const reducer = (state, action) => {
         isClient: false,
         phase: PHASES.ENTER_GAME,
       }
+    case ACTIONS.UPDATE_FROM_FIREBASE:
+      return { ...state, ...action.payload }
     default:
       return state
   }

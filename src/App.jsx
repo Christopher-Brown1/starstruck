@@ -1,21 +1,12 @@
-import { useContext, useEffect } from "react"
+import { useContext } from "react"
 
 import { StateContext } from "./lib/StateContext"
-import { PHASES } from "./gameConsts"
-import { createRoom } from "./firebase"
-
 import { MasterView } from "./MasterView"
 import { ClientView } from "./ClientView"
 import "./App.css"
 
 function App() {
-  const { state, setStartState, setIsClient, setIsMaster } =
-    useContext(StateContext)
-
-  useEffect(() => {
-    if (state?.loading && state.phase === PHASES.ENTER_GAME)
-      createRoom().then((startState) => setStartState(startState))
-  }, [state?.loading, state.phase, setStartState])
+  const { state, setIsClient, setIsMaster } = useContext(StateContext)
 
   if (state.isClient) {
     return <ClientView />

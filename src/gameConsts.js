@@ -546,7 +546,7 @@ export const SUMMITTWISTCARDS = [
 
 export const MOCK_PLAYERS = [
   {
-    name: "Player 1",
+    name: "chris",
     icon: "sun",
     color: "var(--player-pink)",
     crew: "purple",

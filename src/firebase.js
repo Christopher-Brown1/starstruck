@@ -7,12 +7,11 @@ import {
   serverTimestamp,
   updateDoc,
   arrayUnion,
-  arrayRemove,
+  // arrayRemove,
 } from "firebase/firestore"
 
 import { generateRoomCode } from "./lib/utils"
 import { PHASES } from "./gameConsts"
-import { MOCK_PLAYERS } from "./gameConsts"
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_API_KEY,
@@ -21,6 +20,7 @@ const firebaseConfig = {
   storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
   messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
   appId: import.meta.env.VITE_APP_ID,
+  measurementId: import.meta.env.VITE_MEASUREMENT_ID,
 }
 
 const app = initializeApp(firebaseConfig)
@@ -29,10 +29,12 @@ export const db = getFirestore(app)
 
 export const roomConverter = {
   toFirestore(room) {
-    return { ...room, lastUpdated: serverTimestamp() }
+    const { _isClient, _isMaster, ...rest } = room
+    return { ...rest, lastUpdated: serverTimestamp() }
   },
   fromFirestore(snapshot) {
-    return { ...snapshot.data(), id: snapshot.id }
+    const { _isClient, _isMaster, ...rest } = snapshot.data()
+    return { ...rest }
   },
 }
 
@@ -47,7 +49,7 @@ export const createRoom = async () => {
   await setDoc(roomRef, {
     phase: PHASES.ENTER_GAME,
     roomCode: randomRoomCode,
-    players: MOCK_PLAYERS,
+    players: [],
     contestants: [],
   })
 
@@ -83,7 +85,7 @@ export const selectColor = async (roomCode, player, color) => {
 }
 
 export const updateFirebaseState = async (room) => {
-  const roomRef = doc(db, "rooms", room.id).withConverter(roomConverter)
+  const roomRef = doc(db, "rooms", room.roomCode).withConverter(roomConverter)
   await updateDoc(roomRef, room)
   const finalDocSnap = await getDoc(roomRef)
   return finalDocSnap.data()
