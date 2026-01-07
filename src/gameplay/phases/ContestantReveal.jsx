@@ -1,15 +1,27 @@
-import { useContext, useEffect } from "react"
+import { useContext, useEffect, useState } from "react"
 import { CrewDeck } from "../crewDeck/CrewDeck"
 import style from "../gameplay.module.css"
 import { StateContext } from "../../lib/StateContext"
 import { CONTESTANTS } from "../../gameConsts"
+import { roomRefFn } from "../../firebase"
+import { onSnapshot } from "firebase/firestore"
 
 export const ContestantReveal = () => {
-  const { state, setPlayers } = useContext(StateContext)
+  const { state } = useContext(StateContext)
+  const [players, setPlayers] = useState([])
 
   useEffect(() => {
-    const purplePlayers = state.players.filter((p) => p.crew === "purple")
-    const yellowPlayers = state.players.filter((p) => p.crew === "yellow")
+    const roomRef = roomRefFn(state.roomCode)
+    const unsub = onSnapshot(roomRef, (doc) =>
+      setPlayers(doc.data()?.players || [])
+    )
+
+    return () => unsub()
+  }, [state.roomCode])
+
+  useEffect(() => {
+    const purplePlayers = players.filter((p) => p.crew === "purple")
+    const yellowPlayers = players.filter((p) => p.crew === "yellow")
     const { purpleContestants, yellowContestants } = splitContestants()
     const { assignedPurplePlayers, assignedYellowPlayers } = assignContestants(
       purplePlayers,
@@ -40,8 +52,8 @@ export const ContestantReveal = () => {
 
   return (
     <div className={style.deckContainer}>
-      <CrewDeck color="purple" />
-      <CrewDeck color="yellow" />
+      <CrewDeck color='purple' />
+      <CrewDeck color='yellow' />
     </div>
   )
 }

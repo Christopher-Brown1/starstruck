@@ -1,12 +1,25 @@
-import { useContext } from "react"
+import { useContext, useState, useEffect } from "react"
 import style from "../crewDeck/crewDeck.module.css"
 import { StateContext } from "../../lib/StateContext"
 import { PlayerNameCard } from "../../global/players/PlayerNameCard"
 import { ContestantCard } from "../../global/contestants/ContestantCard"
 import { PHASES } from "../../gameConsts"
+import { roomRefFn } from "../../firebase"
+import { onSnapshot } from "firebase/firestore"
 
 export const CrewDeck = ({ color }) => {
   const { state } = useContext(StateContext)
+  const [players, setPlayers] = useState([])
+
+  useEffect(() => {
+    if (!state.roomCode) return
+
+    const roomRef = roomRefFn(state.roomCode)
+    const unsub = onSnapshot(roomRef, (doc) => {
+      setPlayers(doc.data()?.players || [])
+    })
+    return () => unsub()
+  }, [state.roomCode])
 
   return (
     <div className={style.crewDeck}>
@@ -26,7 +39,7 @@ export const CrewDeck = ({ color }) => {
           </h2>
         </div>
         <div className={style.playersContainer}>
-          {state.players
+          {players
             .filter((player) => player.crew === color)
             .map((player, index) => (
               <PlayerNameCard key={index} player={player} />
@@ -41,7 +54,7 @@ export const CrewDeck = ({ color }) => {
         }}
       >
         {state.phase === PHASES.CONTESTANT_REVEAL
-          ? state.players
+          ? players
               .filter((player) => player.crew === color)
               .reduce((acc, player) => {
                 return [...acc, ...player.contestants]
@@ -58,7 +71,7 @@ export const CrewDeck = ({ color }) => {
               .map((contestant, index) => (
                 <ContestantCard key={index} contestant={contestant} />
               ))
-          : state.players
+          : players
               .filter((player) => player.crew === color)
               .reduce((acc, player) => {
                 return [...acc, ...player.contestants]

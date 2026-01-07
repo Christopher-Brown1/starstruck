@@ -1,12 +1,26 @@
-import { useContext } from "react"
+import { useContext, useState, useEffect } from "react"
 import style from "../phaseInstructions/phaseInstructions.module.css"
 import { PHASES } from "../gameConsts"
 import phoneIcon from "../phaseInstructions/assets/phoneIcon.svg"
 import { NextButton } from "../global/buttons/NextButton"
 import { StateContext } from "../lib/StateContext"
+import { roomRefFn } from "../firebase"
+import { onSnapshot } from "firebase/firestore"
 
 export const PhaseInstructions = () => {
-  const { state, setPhase, dealEventCards } = useContext(StateContext)
+  const { state, setPhase, dealEventCards, dividePlayers } =
+    useContext(StateContext)
+  const [players, setPlayers] = useState([])
+
+  useEffect(() => {
+    if (!state.roomCode) return
+
+    const roomRef = roomRefFn(state.roomCode)
+    const unsub = onSnapshot(roomRef, (doc) => {
+      setPlayers(doc.data()?.players || [])
+    })
+    return () => unsub()
+  }, [state.roomCode])
 
   return (
     <>
@@ -17,8 +31,11 @@ export const PhaseInstructions = () => {
             This icon means your phone is needed for this phase
           </h3>
           <NextButton
-            onClick={() => setPhase(PHASES.CREW_DIVISION)}
-            variant="primary"
+            onClick={() => {
+              const newPlayers = dividePlayers(players)
+              setPhase(PHASES.CREW_DIVISION, { players: newPlayers })
+            }}
+            variant='primary'
           />
         </div>
       )}
@@ -28,7 +45,7 @@ export const PhaseInstructions = () => {
           <h3 className={style.text}>Find out which crew you are on.</h3>
           <NextButton
             onClick={() => setPhase(PHASES.CONTESTANT_REVEAL)}
-            variant="primary"
+            variant='primary'
           />
         </div>
       )}
@@ -39,9 +56,9 @@ export const PhaseInstructions = () => {
           <NextButton
             onClick={() => {
               setPhase(PHASES.EVENT)
-              dealEventCards()
+              dealEventCards(players)
             }}
-            variant="primary"
+            variant='primary'
           />
         </div>
       )}
@@ -50,11 +67,9 @@ export const PhaseInstructions = () => {
           <img src={phoneIcon} className={style.phoneIcon} />
           <h3 className={style.text}>View and use event cards.</h3>
           <NextButton
-            disabled={state.players.some(
-              (p) => p.eventsCards[0].when === "NOW"
-            )}
+            disabled={players.some((p) => p.eventCards[0].when === "NOW")}
             onClick={() => setPhase(PHASES.LINEUP)}
-            variant="primary"
+            variant='primary'
           />
         </div>
       )}
@@ -65,7 +80,7 @@ export const PhaseInstructions = () => {
           </h3>
           <NextButton
             onClick={() => setPhase(PHASES.CHALLENGE)}
-            variant="primary"
+            variant='primary'
           />
         </div>
       )}
@@ -74,7 +89,7 @@ export const PhaseInstructions = () => {
           <h3 className={style.text}>Click to start the challenge</h3>
           <NextButton
             onClick={() => setPhase(PHASES.STRATEGIZE)}
-            variant="primary"
+            variant='primary'
           />
         </div>
       )}
@@ -85,7 +100,7 @@ export const PhaseInstructions = () => {
           </h3>
           <NextButton
             onClick={() => setPhase(PHASES.SUMMIT_TWIST)}
-            variant="primary"
+            variant='primary'
           />
         </div>
       )}
@@ -94,7 +109,7 @@ export const PhaseInstructions = () => {
           <h3 className={style.text}>A summit twist card has been played.</h3>
           <NextButton
             onClick={() => setPhase(PHASES.SUMMIT_CARDS)}
-            variant="primary"
+            variant='primary'
           />
         </div>
       )}
@@ -106,7 +121,7 @@ export const PhaseInstructions = () => {
           </h3>
           <NextButton
             onClick={() => setPhase(PHASES.SUMMIT_VOTE)}
-            variant="primary"
+            variant='primary'
           />
         </div>
       )}
@@ -116,7 +131,7 @@ export const PhaseInstructions = () => {
           <h3 className={style.text}>
             Pick which contestant you want to vote out.
           </h3>
-          <NextButton onClick={() => setPhase("event")} variant="primary" />
+          <NextButton onClick={() => setPhase("event")} variant='primary' />
         </div>
       )}
     </>

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { initializeApp } from "firebase/app"
 import {
   doc,
@@ -13,6 +14,7 @@ import {
 import { generateRoomCode } from "./lib/utils"
 import { PHASES } from "./gameConsts"
 
+// Config for Firebase
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_API_KEY,
   authDomain: import.meta.env.VITE_AUTH_DOMAIN,
@@ -23,24 +25,33 @@ const firebaseConfig = {
   measurementId: import.meta.env.VITE_MEASUREMENT_ID,
 }
 
+// Initialize Firebase
 const app = initializeApp(firebaseConfig)
 
+// Get Firestore database
 export const db = getFirestore(app)
 
+// Converter for room data
 export const roomConverter = {
   toFirestore(room) {
-    const { _isClient, _isMaster, ...rest } = room
+    const { isClient, isMaster, ...rest } = room
+
     return { ...rest, lastUpdated: serverTimestamp() }
   },
   fromFirestore(snapshot) {
-    const { _isClient, _isMaster, ...rest } = snapshot.data()
+    const { isClient, isMaster, ...rest } = snapshot.data()
+
     return { ...rest }
   },
 }
 
+export function roomRefFn(roomCode) {
+  return doc(db, "rooms", roomCode).withConverter(roomConverter)
+}
+
 export const createRoom = async () => {
   const randomRoomCode = generateRoomCode()
-  const roomRef = doc(db, "rooms", randomRoomCode).withConverter(roomConverter)
+  const roomRef = roomRefFn(randomRoomCode)
   const docSnap = await getDoc(roomRef)
   if (docSnap.exists()) {
     return createRoom()
@@ -59,7 +70,7 @@ export const createRoom = async () => {
 }
 
 export const joinRoom = async (roomCode, player) => {
-  const roomRef = doc(db, "rooms", roomCode).withConverter(roomConverter)
+  const roomRef = roomRefFn(roomCode)
 
   await updateDoc(roomRef, {
     players: arrayUnion(player),
@@ -67,10 +78,10 @@ export const joinRoom = async (roomCode, player) => {
 
   const finalDocSnap = await getDoc(roomRef)
 
-  return finalDocSnap.data()
+  return finalDocSnap
 }
 export const selectColor = async (roomCode, player, color) => {
-  const roomRef = doc(db, "rooms", roomCode).withConverter(roomConverter)
+  const roomRef = roomRefFn(roomCode)
   const room = await getDoc(roomRef)
 
   await updateDoc(roomRef, {
@@ -85,8 +96,11 @@ export const selectColor = async (roomCode, player, color) => {
 }
 
 export const updateFirebaseState = async (room) => {
-  const roomRef = doc(db, "rooms", room.roomCode).withConverter(roomConverter)
-  await updateDoc(roomRef, room)
-  const finalDocSnap = await getDoc(roomRef)
-  return finalDocSnap.data()
+  try {
+    const roomRef = roomRefFn(room.roomCode)
+    await updateDoc(roomRef, room)
+  } catch (error) {
+    console.error("updateFirebaseState error", error)
+    throw error
+  }
 }

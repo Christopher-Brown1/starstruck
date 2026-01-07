@@ -5,9 +5,9 @@ import App from "./App.jsx"
 import { StateProvider } from "./lib/StateProvider.jsx"
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
-    <StateProvider>
-      <App />
-    </StateProvider>
-  </StrictMode>
+  // <StrictMode>
+  <StateProvider>
+    <App />
+  </StateProvider>
+  // </StrictMode>
 )

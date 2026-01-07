@@ -1,18 +1,32 @@
-import { useContext } from "react"
+import { useContext, useState, useEffect } from "react"
 
 import { StateContext } from "../../lib/StateContext"
 import style from "../gameplay.module.css"
 import { PlayerCard } from "../../global/players/PlayerCard"
+import { roomRefFn } from "../../firebase"
+import { onSnapshot } from "firebase/firestore"
 
 export const EnterGame = () => {
   const { state } = useContext(StateContext)
+  const [players, setPlayers] = useState([])
+
+  useEffect(() => {
+    if (!state.roomCode) return
+
+    const roomRef = roomRefFn(state.roomCode)
+    const unsub = onSnapshot(roomRef, (doc) => {
+      setPlayers(doc.data()?.players || [])
+    })
+
+    return () => unsub()
+  }, [state.roomCode])
 
   return (
     <div className={style.enterContainer}>
       <div className={style.playerDeck}>
         <h2 className={style.headerText}>Players</h2>
         <div className={style.cardsContainer}>
-          {state?.players.map((player) => (
+          {players.map((player) => (
             <PlayerCard phase={state.phase} player={player} />
           ))}
         </div>

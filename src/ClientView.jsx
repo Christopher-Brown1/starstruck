@@ -1,4 +1,4 @@
-import { useState, useContext } from "react"
+import { useState, useContext, useEffect } from "react"
 
 import style from "./clientView.module.css"
 import { StateContext } from "./lib/StateContext"
@@ -7,7 +7,8 @@ import Logo from "./global/assets/logo.svg"
 import { NextButton } from "./global/buttons/NextButton"
 import { ACTIONS } from "./lib/consts"
 import { joinRoom } from "./firebase"
-
+import { roomRefFn } from "./firebase"
+import { onSnapshot } from "firebase/firestore"
 import Rocket from "./global/assets/rocket.svg"
 import Helmet from "./global/assets/helmet.svg"
 import Microscope from "./global/assets/microscope.svg"
@@ -62,16 +63,32 @@ const COLOR_COMBOS = [
 ]
 
 export const ClientView = () => {
-  const { state, setStartState, updateFromFirebase } = useContext(StateContext)
+  const { state, revealPlayer, updateFromFirebase } = useContext(StateContext)
   const [entryInfo, setEntryInfo] = useState({
     name: "",
     roomCode: "",
     color: "",
     icon: "",
   })
-  // TODO: Move these states to the state context
+  const [players, setPlayers] = useState([])
+  const [currentPlayer, setCurrentPlayer] = useState(null)
+
+  // TODO: Move this state to the state context
   const [inRoom, setInRoom] = useState(false)
-  const [revealed, setRevealed] = useState(false)
+
+  useEffect(() => {
+    if (!state.roomCode) return
+
+    const roomRef = roomRefFn(state.roomCode)
+    const unsub = onSnapshot(roomRef, (doc) => {
+      setPlayers(doc.data()?.players || [])
+      setCurrentPlayer(
+        doc.data()?.players.find((p) => p.name === entryInfo.name)
+      )
+    })
+
+    return () => unsub()
+  }, [state.roomCode, entryInfo.name])
 
   return (
     <div className={style.container}>
@@ -130,16 +147,17 @@ export const ClientView = () => {
                       // Player joins room
                       joinRoom(entryInfo.roomCode, {
                         name: entryInfo.name,
-                        icon: entryInfo.icon,
+                        icon: colorCombo.component,
                         color: colorCombo.color,
-                      }).then((room) =>
-                        updateFromFirebase({ roomCode: room.roomCode })
-                      )
+                        revealed: false,
+                        crew: null,
+                      }).then((room) => updateFromFirebase(room))
                     }}
                     style={{
                       border: `4px solid var(--player-${colorCombo.color})`,
                       // Add opacity also if a color is taken by another player
-                      opacity: entryInfo.color === colorCombo.color ? 0.1 : 1,
+                      opacity:
+                        currentPlayer?.color === colorCombo.color ? 0.1 : 1,
                     }}
                   >
                     <img src={colorCombo.component} alt={colorCombo.color} />
@@ -147,12 +165,12 @@ export const ClientView = () => {
                 ))}
               </div>
 
-              {entryInfo.color && (
+              {currentPlayer?.color && (
                 <PlayerCard
                   phase={state.phase}
                   player={{
-                    ...entryInfo,
-                    color: `var(--player-${entryInfo.color})`,
+                    ...currentPlayer,
+                    color: `var(--player-${currentPlayer.color})`,
                   }}
                   style={{ marginTop: "auto" }}
                 />
@@ -166,14 +184,12 @@ export const ClientView = () => {
         <PlayerCard
           phase={state.phase}
           player={{
-            ...entryInfo,
-            color: `var(--player-${
-              state.players.find((p) => p.name === entryInfo.name).color
-            })`,
+            ...currentPlayer,
+            color: `var(--player-${currentPlayer?.color})`,
           }}
-          onClick={() => {
-            setRevealed(true)
-          }}
+          onClick={() =>
+            revealPlayer(state.roomCode, players, currentPlayer?.name)
+          }
         />
       )}
     </div>
